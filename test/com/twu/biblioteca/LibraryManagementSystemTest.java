@@ -140,10 +140,12 @@ public class LibraryManagementSystemTest {
         LMS.processMainMenuOperations("buy book");
         assertEquals("Select a valid option!\n", outStream.toString());
         outStream.reset();
+        assertEquals("main menu", LMS.getSystemCurrentPosition());
 
         LMS.processMainMenuOperations("sell book");
         assertEquals("Select a valid option!\n", outStream.toString());
         outStream.reset();
+        assertEquals("main menu", LMS.getSystemCurrentPosition());
 
         LMS.processMainMenuOperations("List Books");
         assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
@@ -152,20 +154,15 @@ public class LibraryManagementSystemTest {
                 "Hamlet Shakespeare 1972\n" +
                 "gone with the wind Margaret Mitchell 1980\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
-        outStream.reset();
-
-        LMS.processMainMenuOperations("list books");
-        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
-                "The Old Man and the Sea Ernest Hemingway 1990\n" +
-                "Programming Pearl Jon Bentley 2003\n" +
-                "Hamlet Shakespeare 1972\n" +
-                "gone with the wind Margaret Mitchell 1980\n" +
-                "Please type in the operation you want to do: ", outStream.toString());
-        outStream.reset();
+        assertEquals("list books", LMS.getSystemCurrentPosition());
     }
 
     @Test
     public void testProcessBookOperations() {
+        LMS.processMainMenuOperations("List Books");
+        assertEquals("list books", LMS.getSystemCurrentPosition());
+        outStream.reset();
+
         LMS.processBookOperations("borrow Harry Potter");
         assertEquals("That book is not available.\n", outStream.toString());
         outStream.reset();
@@ -190,6 +187,9 @@ public class LibraryManagementSystemTest {
         assertEquals("Thank you for returning the book.\n", outStream.toString());
         outStream.reset();
         assertEquals(0, currentCustomer.getBorrowedBooksList().size());
+
+        LMS.processBookOperations("back");
+        assertEquals("main menu", LMS.getSystemCurrentPosition());
     }
 
     @Test

@@ -9,6 +9,7 @@ public class LibraryManagementSystem {
     private Customer currentCustomer;
     private LinkedList<Book> booksList;
     private LinkedList<String> mainMenu;
+    private String systemCurrentPosition;
 
     public LibraryManagementSystem(LinkedList<Book> books){
         this.booksList = books;
@@ -18,14 +19,15 @@ public class LibraryManagementSystem {
         // To be changed later.
         this.mainMenu = new LinkedList<String>();
         this.mainMenu.add("List Books");
+        this.systemCurrentPosition = "main menu";
     }
 
     public Customer getCurrentCustomer() {
         return this.currentCustomer;
     }
 
-    public LinkedList<Book> getBooksList() {
-        return this.booksList;
+    public String getSystemCurrentPosition() {
+        return this.systemCurrentPosition;
     }
 
     public void showWelcomeMessage() {
@@ -70,6 +72,7 @@ public class LibraryManagementSystem {
         for(String option : this.mainMenu){
             if(option.equals("List Books") && option.toLowerCase().equals(operationContent)){
                 showBooksList();
+                this.systemCurrentPosition = "list books";
                 return;
             }
         }
@@ -93,9 +96,12 @@ public class LibraryManagementSystem {
             if(targetBook != null){
                 currentCustomer.returnBook(targetBook);
                 showFlashMessage("successful return");
-            }else {
+            }else{
                 showFlashMessage("unsuccessful return");
             }
+        }else if(operationContent.equals("back")){
+            this.systemCurrentPosition = "main menu";
+            this.showMainMenu();
         }else{
             showFlashMessage("invalid book option");
         }
