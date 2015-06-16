@@ -89,7 +89,13 @@ public class LibraryManagementSystem {
             }
         }else if(operationContent.startsWith("return ")){
             String book = operationContent.replace("return ", "");
-            //TO DO: check and return the book
+            Book targetBook = currentCustomer.findBookIfAvailableToReturn(book);
+            if(targetBook != null){
+                currentCustomer.returnBook(targetBook);
+                showFlashMessage("successful return");
+            }else {
+                showFlashMessage("unsuccessful return");
+            }
         }else{
             showFlashMessage("invalid book option");
         }

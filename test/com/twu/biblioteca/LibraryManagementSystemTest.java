@@ -185,11 +185,11 @@ public class LibraryManagementSystemTest {
         assertEquals("That is not a valid book to return.\n", outStream.toString());
         outStream.reset();
 
+
         LMS.processBookOperations("return gone with the wind");
         assertEquals("Thank you for returning the book.\n", outStream.toString());
         outStream.reset();
         assertEquals(0, currentCustomer.getBorrowedBooksList().size());
-        assertFalse(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
     }
 
     @Test
