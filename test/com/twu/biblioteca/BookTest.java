@@ -12,14 +12,20 @@ public class BookTest {
     private Book bookA, bookB;
     @Before
     public void setup() {
-        bookA = new Book("Hamlet", 1972);
-        bookB = new Book("gone with the wind", 1980);
+        bookA = new Book("Hamlet", "Shakespeare", 1972);
+        bookB = new Book("gone with the wind", "Margaret Mitchell", 1980);
+    }
+
+    @Test
+    public void testIdBookNameIsCorrect() {
+        assertEquals("Hamlet", bookA.getBookName());
+        assertEquals("gone with the wind", bookB.getBookName());
     }
 
     @Test
     public void testIfBookAuthorIsCorrect() {
-        assertEquals("Hamlet", bookA.getAuthor());
-        assertEquals("gone with the wind", bookB.getAuthor());
+        assertEquals("Shakespeare", bookA.getAuthor());
+        assertEquals("Margaret Mitchell", bookB.getAuthor());
     }
 
     @Test

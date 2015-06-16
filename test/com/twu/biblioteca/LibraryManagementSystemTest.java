@@ -25,11 +25,11 @@ public class LibraryManagementSystemTest {
         System.setOut(new PrintStream(outStream));
         System.setErr(new PrintStream(errStream));
 
-        bookA = new Book("One Hundred Years of Solitude", 1910);
-        bookB = new Book("The Old Man and the Sea", 1990);
-        bookC = new Book("Programming Pearl", 2003);
-        bookD = new Book("Hamlet", 1972);
-        bookE = new Book("gone with the wind", 1980);
+        bookA = new Book("One Hundred Years of Solitude", "Gabriel García Márquez", 1910);
+        bookB = new Book("The Old Man and the Sea", "Ernest Hemingway", 1990);
+        bookC = new Book("Programming Pearl", "Jon Bentley", 2003);
+        bookD = new Book("Hamlet", "Shakespeare", 1972);
+        bookE = new Book("gone with the wind", "Margaret Mitchell", 1980);
 
         LinkedList<Book> booksList = new LinkedList<Book>();
         booksList.add(bookA);
@@ -68,26 +68,26 @@ public class LibraryManagementSystemTest {
     public void testShowAvailableBookList() {
         currentCustomer.borrowBook(bookA);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nProgramming Pearl 2003\nHamlet 1972\ngone with the wind 1980\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nProgramming Pearl Jon Bentley 2003\nHamlet Shakespeare 1972\ngone with the wind Margaret Mitchell 1980\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.borrowBook(bookC);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nHamlet 1972\ngone with the wind 1980\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nHamlet Shakespeare 1972\ngone with the wind Margaret Mitchell 1980\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.borrowBook(bookE);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nHamlet 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nHamlet Shakespeare 1972\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.returnBook(bookC);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nProgramming Pearl 2003\nHamlet 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nProgramming Pearl Jon Bentley 2003\nHamlet Shakespeare 1972\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.returnBook(bookA);
         LMS.showBooksList();
-        assertEquals("One Hundred Years of Solitude 1910\nThe Old Man and the Sea 1990\nProgramming Pearl 2003\nHamlet 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\nThe Old Man and the Sea Ernest Hemingway 1990\nProgramming Pearl Jon Bentley 2003\nHamlet Shakespeare 1972\nPlease type in the operation you want to do: ", outStream.toString());
     }
 }

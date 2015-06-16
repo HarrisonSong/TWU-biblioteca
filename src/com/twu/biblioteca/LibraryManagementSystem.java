@@ -43,7 +43,7 @@ public class LibraryManagementSystem {
         for(int bookIndex = 0; bookIndex < this.booksList.size(); bookIndex++ ){
             Book currentBook = this.booksList.get(bookIndex);
             if(!currentBook.getCheckOutStatus()){
-                System.out.println(currentBook.getAuthor() + " " + currentBook.getPublishingYear());
+                System.out.println(currentBook.getBookName() + " " + currentBook.getAuthor() + " " + currentBook.getPublishingYear());
             }
         }
         showRemindingMessage();

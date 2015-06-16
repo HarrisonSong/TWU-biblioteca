@@ -4,14 +4,20 @@ package com.twu.biblioteca;
  * Created by qiyuesong on 16/6/15.
  */
 public class Book {
+    private String bookName;
     private String author;
     private int publishingYear;
     private boolean checkOutStatus;
 
-    public Book(String author, int year) {
+    public Book(String book, String author, int year) {
+        this.bookName = book;
         this.author = author;
         this.publishingYear = year;
         this.checkOutStatus = false;
+    }
+
+    public String getBookName() {
+        return this.bookName;
     }
 
     public String getAuthor() {

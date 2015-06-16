@@ -17,9 +17,9 @@ public class CustomerTest {
     @Before
     public void setup() {
         customer = new Customer("Song Qiyue");
-        bookA = new Book("One Hundred Years of Solitude", 1910);
-        bookB = new Book("The Old Man and the Sea", 1990);
-        bookC = new Book("Programming Pearl", 2003);
+        bookA = new Book("One Hundred Years of Solitude", "Gabriel García Márquez", 1910);
+        bookB = new Book("The Old Man and the Sea", "Ernest Hemingway", 1990);
+        bookC = new Book("Programming Pearl", "Jon Bentley", 2003);
     }
 
     @Test
