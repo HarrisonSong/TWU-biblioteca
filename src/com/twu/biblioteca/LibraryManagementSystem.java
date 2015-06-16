@@ -50,7 +50,17 @@ public class LibraryManagementSystem {
     }
 
     public void showFlashMessage(String type){
-
+        if(type == "invalid Menu option"){
+            System.out.println("Select a valid option!");
+        }else if(type == "successful checkout"){
+            System.out.println("Thank you! Enjoy the book.");
+        }else if(type == "unsuccessful checkout"){
+            System.out.println("That book is not available.");
+        }else if(type == "successful return"){
+            System.out.println("Thank you for returning the book.");
+        }else if(type == "unsuccessful return"){
+            System.out.println("That is not a valid book to return.");
+        }
     }
 
     private void showRemindingMessage() {

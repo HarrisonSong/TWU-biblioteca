@@ -94,18 +94,22 @@ public class LibraryManagementSystemTest {
     @Test
     public void testShowFlashMessage() {
         LMS.showFlashMessage("invalid Menu option");
-        assertEquals("Select a valid option!", outStream.toString());
+        assertEquals("Select a valid option!\n", outStream.toString());
+        outStream.reset();
 
         LMS.showFlashMessage("successful checkout");
-        assertEquals("Thank you! Enjoy the book.", outStream.toString());
+        assertEquals("Thank you! Enjoy the book.\n", outStream.toString());
+        outStream.reset();
 
         LMS.showFlashMessage("unsuccessful checkout");
-        assertEquals("That book is not available.", outStream.toString());
+        assertEquals("That book is not available.\n", outStream.toString());
+        outStream.reset();
 
         LMS.showFlashMessage("successful return");
-        assertEquals("Thank you for returning the book.", outStream.toString());
+        assertEquals("Thank you for returning the book.\n", outStream.toString());
+        outStream.reset();
 
         LMS.showFlashMessage("unsuccessful return");
-        assertEquals("That is not a valid book to return.", outStream.toString());
+        assertEquals("That is not a valid book to return.\n", outStream.toString());
     }
 }
