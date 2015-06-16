@@ -111,7 +111,7 @@ public class LibraryManagementSystemTest {
 
     @Test
     public void testShowFlashMessage() {
-        LMS.showFlashMessage("invalid Menu option");
+        LMS.showFlashMessage("invalid menu option");
         assertEquals("Select a valid option!\n", outStream.toString());
         outStream.reset();
 

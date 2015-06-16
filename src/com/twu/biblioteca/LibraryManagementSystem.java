@@ -50,21 +50,30 @@ public class LibraryManagementSystem {
     }
 
     public void showFlashMessage(String type){
-        if(type == "invalid Menu option"){
+        if(type.equals("invalid menu option")){
             System.out.println("Select a valid option!");
-        }else if(type == "successful checkout"){
+        }else if(type.equals("successful checkout")){
             System.out.println("Thank you! Enjoy the book.");
-        }else if(type == "unsuccessful checkout"){
+        }else if(type.equals("unsuccessful checkout")){
             System.out.println("That book is not available.");
-        }else if(type == "successful return"){
+        }else if(type.equals("successful return")){
             System.out.println("Thank you for returning the book.");
-        }else if(type == "unsuccessful return"){
+        }else if(type.equals("unsuccessful return")){
             System.out.println("That is not a valid book to return.");
+            //<editor-fold desc="Description">
         }
+        //</editor-fold>
     }
 
     public void processMainMenuOperations(String operation){
-
+        String operationContent = operation.trim().toLowerCase();
+        for(String option : this.mainMenu){
+            if(option.equals("List Books") && option.toLowerCase().equals(operationContent)){
+                showBooksList();
+                return;
+            }
+        }
+        showFlashMessage("invalid menu option");
     }
 
     private void showRemindingMessage() {
