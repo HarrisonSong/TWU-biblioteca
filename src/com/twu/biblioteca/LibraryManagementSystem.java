@@ -89,6 +89,11 @@ public class LibraryManagementSystem {
     }
 
     public Book findBookIfAvailable(String bookName){
+        for(Book book : this.booksList){
+            if(!book.getCheckOutStatus() && book.getBookName().equals(bookName)){
+                return book;
+            }
+        }
         return null;
     }
 
