@@ -55,7 +55,7 @@ public class LibraryManagementSystemTest {
     @Test
     public void testShowWelcomeMessage() {
         LMS.showWelcomeMessage();
-        assertEquals("Welcome to biblioteca library management system.\nBelow is the operations you can do.", outStream.toString());
+        assertEquals("Welcome to biblioteca library management system.\nBelow is the operations you can do.\n", outStream.toString());
     }
 
     @Test
@@ -68,22 +68,26 @@ public class LibraryManagementSystemTest {
     public void testShowAvailableBookList() {
         currentCustomer.borrowBook(bookA);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nProgramming Pearl 2003\nHamlet 1972\ngone with the wind 1980", outStream.toString());
+        assertEquals("The Old Man and the Sea 1990\nProgramming Pearl 2003\nHamlet 1972\ngone with the wind 1980\nPlease type in the operation you want to do: ", outStream.toString());
+        outStream.reset();
 
         currentCustomer.borrowBook(bookC);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nHamlet 1972\ngone with the wind 1980", outStream.toString());
+        assertEquals("The Old Man and the Sea 1990\nHamlet 1972\ngone with the wind 1980\nPlease type in the operation you want to do: ", outStream.toString());
+        outStream.reset();
 
         currentCustomer.borrowBook(bookE);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nHamlet 1972", outStream.toString());
+        assertEquals("The Old Man and the Sea 1990\nHamlet 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        outStream.reset();
 
         currentCustomer.returnBook(bookC);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nHamlet 1972\nProgramming Pearl 2003", outStream.toString());
+        assertEquals("The Old Man and the Sea 1990\nProgramming Pearl 2003\nHamlet 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        outStream.reset();
 
         currentCustomer.returnBook(bookA);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea 1990\nHamlet 1972\nProgramming Pearl 2003\nOne Hundred Years of Solitude 1910", outStream.toString());
+        assertEquals("One Hundred Years of Solitude 1910\nThe Old Man and the Sea 1990\nProgramming Pearl 2003\nHamlet 1972\nPlease type in the operation you want to do: ", outStream.toString());
     }
 }
