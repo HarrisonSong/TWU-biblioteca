@@ -49,6 +49,10 @@ public class LibraryManagementSystem {
         showRemindingMessage();
     }
 
+    public void showFlashMessage(String type){
+
+    }
+
     private void showRemindingMessage() {
         System.out.print("Please type in the operation you want to do: ");
     }

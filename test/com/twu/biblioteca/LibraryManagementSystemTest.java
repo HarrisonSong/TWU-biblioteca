@@ -90,4 +90,22 @@ public class LibraryManagementSystemTest {
         LMS.showBooksList();
         assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\nThe Old Man and the Sea Ernest Hemingway 1990\nProgramming Pearl Jon Bentley 2003\nHamlet Shakespeare 1972\nPlease type in the operation you want to do: ", outStream.toString());
     }
+
+    @Test
+    public void testShowFlashMessage() {
+        LMS.showFlashMessage("invalid Menu option");
+        assertEquals("Select a valid option!", outStream.toString());
+
+        LMS.showFlashMessage("successful checkout");
+        assertEquals("Thank you! Enjoy the book.", outStream.toString());
+
+        LMS.showFlashMessage("unsuccessful checkout");
+        assertEquals("That book is not available.", outStream.toString());
+
+        LMS.showFlashMessage("successful return");
+        assertEquals("Thank you for returning the book.", outStream.toString());
+
+        LMS.showFlashMessage("unsuccessful return");
+        assertEquals("That is not a valid book to return.", outStream.toString());
+    }
 }
