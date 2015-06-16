@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import static com.twu.biblioteca.SystemConstants.*;
+
 /**
  * Created by qiyuesong on 16/6/15.
  */
@@ -14,12 +16,12 @@ public class LibraryManagementSystem {
 
     public LibraryManagementSystem(LinkedList<Book> books){
         this.booksList = books;
-        currentCustomer = new Customer("Default Customer");
+        currentCustomer = new Customer(SYSTEM_DEFAULT_USERNAME);
 
         // Initialize the menu list in the constructor first.
         // To be changed later.
         this.mainMenu = new LinkedList<String>();
-        this.mainMenu.add("List Books");
+        this.mainMenu.add(MAIN_MENU_LIST_BOOKS_OPTION);
         this.systemCurrentPosition = "main menu";
     }
 
@@ -28,10 +30,10 @@ public class LibraryManagementSystem {
         showMainMenu();
         Scanner sc = new Scanner(System.in);
         String operation = sc.nextLine().trim().toLowerCase();
-        while(!operation.equals("quit")){
-            if(systemCurrentPosition.equals("main menu")){
+        while(!operation.equals(QUIT_OPTION)){
+            if(systemCurrentPosition.equals(SYSTEM_POSITION_MAIN_MENU)){
                 processMainMenuOperations(operation);
-            }else if(systemCurrentPosition.equals("list books")){
+            }else if(systemCurrentPosition.equals(SYSTEM_POSITION_LIST_BOOKS)){
                 processBookOperations(operation);
             }
             operation = sc.nextLine();
@@ -47,7 +49,7 @@ public class LibraryManagementSystem {
     }
 
     public void showWelcomeMessage() {
-        System.out.println("Welcome to biblioteca library management system.\nBelow is the operations you can do.");
+        System.out.println(WELCOME_MESSAGE);
     }
 
     public void showMainMenu() {
@@ -68,31 +70,31 @@ public class LibraryManagementSystem {
     }
 
     public void showFlashMessage(String type){
-        if(type.equals("invalid menu option")){
-            System.out.println("Select a valid option!");
-        }else if(type.equals("successful checkout")){
-            System.out.println("Thank you! Enjoy the book.");
-        }else if(type.equals("unsuccessful checkout")){
-            System.out.println("That book is not available.");
-        }else if(type.equals("successful return")){
-            System.out.println("Thank you for returning the book.");
-        }else if(type.equals("unsuccessful return")){
-            System.out.println("That is not a valid book to return.");
-        }else if(type.equals("invalid book option")){
-            System.out.println("Your operation is not available.");
+        if(type.equals(INVALID_MENU_OPTION)){
+            System.out.println(INVALID_MENU_OPTION_MESSAGE);
+        }else if(type.equals(SUCCESSFUL_CHECKOUT)){
+            System.out.println(SUCCESSFUL_CHECKOUT_MESSAGE);
+        }else if(type.equals(UNSUCCESSFUL_CHECKOUT)){
+            System.out.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
+        }else if(type.equals(SUCCESSFUL_RETURN)){
+            System.out.println(SUCCESSFUL_RETURN_MESSAGE);
+        }else if(type.equals(UNSUCCESSFUL_RETURN)){
+            System.out.println(UNSUCCESSFUL_RETURN_MESSAGE);
+        }else if(type.equals(INVALID_BOOK_OPTION)){
+            System.out.println(INVALID_BOOK_OPTION_MESSAGE);
         }
     }
 
     public void processMainMenuOperations(String operation){
         String operationContent = operation.trim().toLowerCase();
         for(String option : this.mainMenu){
-            if(option.equals("List Books") && option.toLowerCase().equals(operationContent)){
+            if(option.equals(MAIN_MENU_LIST_BOOKS_OPTION) && option.toLowerCase().equals(operationContent)){
                 showBooksList();
-                this.systemCurrentPosition = "list books";
+                this.systemCurrentPosition = SYSTEM_POSITION_LIST_BOOKS;
                 return;
             }
         }
-        showFlashMessage("invalid menu option");
+        showFlashMessage(INVALID_MENU_OPTION);
     }
 
     public void processBookOperations(String operation){
@@ -102,9 +104,9 @@ public class LibraryManagementSystem {
             Book targetBook = findBookIfAvailable(book);
             if(targetBook != null){
                 currentCustomer.borrowBook(targetBook);
-                showFlashMessage("successful checkout");
+                showFlashMessage(SUCCESSFUL_CHECKOUT);
             }else {
-                showFlashMessage("unsuccessful checkout");
+                showFlashMessage(UNSUCCESSFUL_CHECKOUT);
             }
             showRemindingMessage();
         }else if(operationContent.startsWith("return ")){
@@ -112,16 +114,16 @@ public class LibraryManagementSystem {
             Book targetBook = currentCustomer.findBookIfAvailableToReturn(book);
             if(targetBook != null){
                 currentCustomer.returnBook(targetBook);
-                showFlashMessage("successful return");
+                showFlashMessage(SUCCESSFUL_RETURN);
             }else{
-                showFlashMessage("unsuccessful return");
+                showFlashMessage(SUCCESSFUL_RETURN_MESSAGE);
             }
             showRemindingMessage();
-        }else if(operationContent.equals("back")){
-            this.systemCurrentPosition = "main menu";
+        }else if(operationContent.equals(BACK_OPTION)){
+            this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
         }else{
-            showFlashMessage("invalid book option");
+            showFlashMessage(INVALID_BOOK_OPTION);
             showRemindingMessage();
         }
     }
@@ -136,6 +138,6 @@ public class LibraryManagementSystem {
     }
 
     private void showRemindingMessage() {
-        System.out.print("Please type in the operation you want to do: ");
+        System.out.print(REMINDING_MESSAGE);
     }
 }

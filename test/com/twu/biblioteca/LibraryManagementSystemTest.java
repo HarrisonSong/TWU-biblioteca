@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
+import static com.twu.biblioteca.SystemConstants.*;
 import static org.junit.Assert.*;
 
 /**
@@ -49,7 +50,7 @@ public class LibraryManagementSystemTest {
 
     @Test
     public void testCurrentCustomer() {
-        assertEquals("Default Customer", currentCustomer.getCustomerName());
+        assertEquals(SYSTEM_DEFAULT_USERNAME, currentCustomer.getCustomerName());
     }
 
     @Test
@@ -195,9 +196,9 @@ public class LibraryManagementSystemTest {
     @Test
     public void testFindBookIfAvailable(){
         currentCustomer.borrowBook(bookA);
-        assertNull(LMS.findBookIfAvailable(bookA.getBookName()));
-        assertNotNull(LMS.findBookIfAvailable(bookB.getBookName()));
+        assertNull(LMS.findBookIfAvailable(bookA.getBookName().toLowerCase()));
+        assertNotNull(LMS.findBookIfAvailable(bookB.getBookName().toLowerCase()));
         currentCustomer.borrowBook(bookB);
-        assertNull(LMS.findBookIfAvailable(bookB.getBookName()));
+        assertNull(LMS.findBookIfAvailable(bookB.getBookName().toLowerCase()));
     }
 }
