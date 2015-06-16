@@ -40,7 +40,12 @@ public class Customer {
         }
     }
 
-    public Book findBookIfAvailableToReturn(Book book){
+    public Book findBookIfAvailableToReturn(String bookName){
+        for(Book book : this.borrowedBooksList){
+            if(book.getBookName().equals(bookName)){
+                return book;
+            }
+        }
         return null;
     }
 }

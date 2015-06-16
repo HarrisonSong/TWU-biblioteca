@@ -78,8 +78,8 @@ public class CustomerTest {
     public void testFindBookIfAvailableToReturn(){
         customer.borrowBook(bookA);
         customer.borrowBook(bookC);
-        assertNull(customer.findBookIfAvailableToReturn(bookB));
-        assertNotNull(customer.findBookIfAvailableToReturn(bookA));
-        assertNotNull(customer.findBookIfAvailableToReturn(bookC));
+        assertNull(customer.findBookIfAvailableToReturn(bookB.getBookName()));
+        assertNotNull(customer.findBookIfAvailableToReturn(bookA.getBookName()));
+        assertNotNull(customer.findBookIfAvailableToReturn(bookC.getBookName()));
     }
 }
