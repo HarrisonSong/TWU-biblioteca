@@ -4,9 +4,7 @@ import com.twu.biblioteca.Book;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -44,5 +42,11 @@ public class BookTest {
         assertTrue(bookB.getCheckOutStatus());
         bookB.checkIn();
         assertFalse(bookB.getCheckOutStatus());
+    }
+
+    @Test
+    public void testBookEquality() {
+        assertEquals(bookA, bookA);
+        assertNotEquals(bookA, bookB);
     }
 }
