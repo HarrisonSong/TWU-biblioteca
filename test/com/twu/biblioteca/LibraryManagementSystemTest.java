@@ -164,27 +164,27 @@ public class LibraryManagementSystemTest {
         outStream.reset();
 
         LMS.processBookOperations("borrow Harry Potter");
-        assertEquals("That book is not available.\n", outStream.toString());
+        assertEquals("That book is not available.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         LMS.processBookOperations("borrow gone with the wind");
-        assertEquals("Thank you! Enjoy the book.\n", outStream.toString());
+        assertEquals("Thank you! Enjoy the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
         assertEquals(1, currentCustomer.getBorrowedBooksList().size());
         assertTrue(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
         assertEquals("gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getBookName());
 
         LMS.processBookOperations("buy gone with the wind");
-        assertEquals("Your operation is not available.\n", outStream.toString());
+        assertEquals("Your operation is not available.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         LMS.processBookOperations("return Hello Potter");
-        assertEquals("That is not a valid book to return.\n", outStream.toString());
+        assertEquals("That is not a valid book to return.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
 
         LMS.processBookOperations("return gone with the wind");
-        assertEquals("Thank you for returning the book.\n", outStream.toString());
+        assertEquals("Thank you for returning the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
         assertEquals(0, currentCustomer.getBorrowedBooksList().size());
 

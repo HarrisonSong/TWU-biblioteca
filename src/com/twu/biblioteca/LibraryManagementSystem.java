@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -20,6 +21,21 @@ public class LibraryManagementSystem {
         this.mainMenu = new LinkedList<String>();
         this.mainMenu.add("List Books");
         this.systemCurrentPosition = "main menu";
+    }
+
+    public void startSystem(){
+        showWelcomeMessage();
+        showMainMenu();
+        Scanner sc = new Scanner(System.in);
+        String operation = sc.nextLine().trim().toLowerCase();
+        while(!operation.equals("quit")){
+            if(systemCurrentPosition.equals("main menu")){
+                processMainMenuOperations(operation);
+            }else if(systemCurrentPosition.equals("list books")){
+                processBookOperations(operation);
+            }
+            operation = sc.nextLine();
+        }
     }
 
     public Customer getCurrentCustomer() {
@@ -90,6 +106,7 @@ public class LibraryManagementSystem {
             }else {
                 showFlashMessage("unsuccessful checkout");
             }
+            showRemindingMessage();
         }else if(operationContent.startsWith("return ")){
             String book = operationContent.replace("return ", "");
             Book targetBook = currentCustomer.findBookIfAvailableToReturn(book);
@@ -99,17 +116,19 @@ public class LibraryManagementSystem {
             }else{
                 showFlashMessage("unsuccessful return");
             }
+            showRemindingMessage();
         }else if(operationContent.equals("back")){
             this.systemCurrentPosition = "main menu";
             this.showMainMenu();
         }else{
             showFlashMessage("invalid book option");
+            showRemindingMessage();
         }
     }
 
     public Book findBookIfAvailable(String bookName) {
         for (Book book : this.booksList) {
-            if (!book.getCheckOutStatus() && book.getBookName().equals(bookName)) {
+            if (!book.getCheckOutStatus() && book.getBookName().toLowerCase().equals(bookName)) {
                 return book;
             }
         }
