@@ -63,6 +63,10 @@ public class LibraryManagementSystem {
         }
     }
 
+    public void processMainMenuOperations(String operation){
+
+    }
+
     private void showRemindingMessage() {
         System.out.print("Please type in the operation you want to do: ");
     }

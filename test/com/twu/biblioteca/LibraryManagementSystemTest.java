@@ -55,40 +55,58 @@ public class LibraryManagementSystemTest {
     @Test
     public void testShowWelcomeMessage() {
         LMS.showWelcomeMessage();
-        assertEquals("Welcome to biblioteca library management system.\nBelow is the operations you can do.\n", outStream.toString());
+        assertEquals("Welcome to biblioteca library management system.\n" +
+                "Below is the operations you can do.\n", outStream.toString());
     }
 
     @Test
     public void testShowMainMenu() {
         LMS.showMainMenu();
-        assertEquals("List Books\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("List Books\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
     }
 
     @Test
     public void testShowAvailableBookList() {
         currentCustomer.borrowBook(bookA);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nProgramming Pearl Jon Bentley 2003\nHamlet Shakespeare 1972\ngone with the wind Margaret Mitchell 1980\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Programming Pearl Jon Bentley 2003\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "gone with the wind Margaret Mitchell 1980\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.borrowBook(bookC);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nHamlet Shakespeare 1972\ngone with the wind Margaret Mitchell 1980\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "gone with the wind Margaret Mitchell 1980\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.borrowBook(bookE);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nHamlet Shakespeare 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.returnBook(bookC);
         LMS.showBooksList();
-        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\nProgramming Pearl Jon Bentley 2003\nHamlet Shakespeare 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Programming Pearl Jon Bentley 2003\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         currentCustomer.returnBook(bookA);
         LMS.showBooksList();
-        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\nThe Old Man and the Sea Ernest Hemingway 1990\nProgramming Pearl Jon Bentley 2003\nHamlet Shakespeare 1972\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
+                "The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Programming Pearl Jon Bentley 2003\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
     }
 
     @Test
@@ -111,5 +129,34 @@ public class LibraryManagementSystemTest {
 
         LMS.showFlashMessage("unsuccessful return");
         assertEquals("That is not a valid book to return.\n", outStream.toString());
+    }
+
+    @Test
+    public void testProcessMainMenuOperations(){
+        LMS.processMainMenuOperations("buy book");
+        assertEquals("Select a valid option!\n", outStream.toString());
+        outStream.reset();
+
+        LMS.processMainMenuOperations("sell book");
+        assertEquals("Select a valid option!\n", outStream.toString());
+        outStream.reset();
+
+        LMS.processMainMenuOperations("List Books");
+        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
+                "The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Programming Pearl Jon Bentley 2003\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "gone with the wind Margaret Mitchell 1980\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
+        outStream.reset();
+
+        LMS.processMainMenuOperations("list books");
+        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
+                "The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Programming Pearl Jon Bentley 2003\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "gone with the wind Margaret Mitchell 1980\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
+        outStream.reset();
     }
 }
