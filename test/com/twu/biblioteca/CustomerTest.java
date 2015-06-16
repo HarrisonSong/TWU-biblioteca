@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -60,18 +61,18 @@ public class CustomerTest {
         customer.borrowBook(bookC);
 
         customer.returnBook(bookA);
-        assertTrue(bookA.getCheckOutStatus());
+        assertFalse(bookA.getCheckOutStatus());
         assertEquals(2, customer.getBorrowedBooksList().size());
 
         customer.returnBook(bookB);
-        assertTrue(bookB.getCheckOutStatus());
+        assertFalse(bookB.getCheckOutStatus());
         assertEquals(1, customer.getBorrowedBooksList().size());
 
         customer.returnBook(bookA);
         assertEquals(1, customer.getBorrowedBooksList().size());
 
         customer.returnBook(bookC);
-        assertTrue(bookC.getCheckOutStatus());
+        assertFalse(bookC.getCheckOutStatus());
         assertEquals(0, customer.getBorrowedBooksList().size());
     }
 }

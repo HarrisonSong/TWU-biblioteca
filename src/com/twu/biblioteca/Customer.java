@@ -27,10 +27,16 @@ public class Customer {
     }
 
     public void borrowBook(Book newBook) {
-
+        if(!this.borrowedBooksList.contains(newBook)){
+            this.borrowedBooksList.addLast(newBook);
+            newBook.checkOut();
+        }
     }
 
-    public void returnBook(Book newBook) {
-
+    public void returnBook(Book oldBook) {
+        if(this.borrowedBooksList.contains(oldBook)){
+            this.borrowedBooksList.remove(oldBook);
+            oldBook.checkIn();
+        }
     }
 }
