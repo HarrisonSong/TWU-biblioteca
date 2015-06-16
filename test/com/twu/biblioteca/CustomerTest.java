@@ -1,10 +1,7 @@
-package com.twu.bibioteca;
+package com.twu.biblioteca;
 
-import com.twu.biblioteca.Book;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -21,21 +18,21 @@ public class CustomerTest {
         customer = new Customer("Song Qiyue");
         bookA = new Book("One Hundred Years of Solitude", 1910);
         bookB = new Book("The Old Man and the Sea", 1990);
-        bookB = new Book("Programming Pearl", 2003);
+        bookC = new Book("Programming Pearl", 2003);
     }
 
     @Test
-    public testCustomerName() {
-        assertEquals("Song Qiyue", customer.name);
+    public void testGetCustomerName() {
+        assertEquals("Song Qiyue", customer.getCustomerName());
     }
 
     @Test
-    public testCustomerBorrowedBooksListIsEmpty() {
+    public void testCustomerBorrowedBooksListIsEmpty() {
         assertEquals(0, customer.getBorrowedBooksList().size());
     }
 
     @Test
-    public testCustomerBorrowBook() {
+    public void testCustomerBorrowBook() {
         customer.borrowBook(bookA);
         assertTrue(bookA.getCheckOutStatus());
         assertEquals(1, customer.getBorrowedBooksList().size());
@@ -57,7 +54,7 @@ public class CustomerTest {
     }
 
     @Test
-    public testCustomerReturnBook() {
+    public void testCustomerReturnBook() {
         customer.borrowBook(bookA);
         customer.borrowBook(bookB);
         customer.borrowBook(bookC);
@@ -71,12 +68,10 @@ public class CustomerTest {
         assertEquals(1, customer.getBorrowedBooksList().size());
 
         customer.returnBook(bookA);
-        assertTrue(1, customer.getBorrowedBooksList().size());
+        assertEquals(1, customer.getBorrowedBooksList().size());
 
         customer.returnBook(bookC);
         assertTrue(bookC.getCheckOutStatus());
         assertEquals(0, customer.getBorrowedBooksList().size());
     }
-
-
 }
