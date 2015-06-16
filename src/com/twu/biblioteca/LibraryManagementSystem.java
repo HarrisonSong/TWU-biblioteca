@@ -80,17 +80,24 @@ public class LibraryManagementSystem {
         String operationContent = operation.trim().toLowerCase();
         if(operationContent.startsWith("borrow ")){
             String book = operationContent.replace("borrow ", "");
-
+            Book targetBook = findBookIfAvailable(book);
+            if(targetBook != null){
+                currentCustomer.borrowBook(targetBook);
+                showFlashMessage("successful checkout");
+            }else {
+                showFlashMessage("unsuccessful checkout");
+            }
         }else if(operationContent.startsWith("return ")){
             String book = operationContent.replace("return ", "");
+            //TO DO: check and return the book
         }else{
             showFlashMessage("invalid book option");
         }
     }
 
-    public Book findBookIfAvailable(String bookName){
-        for(Book book : this.booksList){
-            if(!book.getCheckOutStatus() && book.getBookName().equals(bookName)){
+    public Book findBookIfAvailable(String bookName) {
+        for (Book book : this.booksList) {
+            if (!book.getCheckOutStatus() && book.getBookName().equals(bookName)) {
                 return book;
             }
         }

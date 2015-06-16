@@ -3,9 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -74,5 +72,14 @@ public class CustomerTest {
         customer.returnBook(bookC);
         assertFalse(bookC.getCheckOutStatus());
         assertEquals(0, customer.getBorrowedBooksList().size());
+    }
+
+    @Test
+    public void testFindBookIfAvailableToReturn(){
+        customer.borrowBook(bookA);
+        customer.borrowBook(bookC);
+        assertNull(customer.findBookIfAvailableToReturn(bookB));
+        assertNotNull(customer.findBookIfAvailableToReturn(bookA));
+        assertNotNull(customer.findBookIfAvailableToReturn(bookC));
     }
 }

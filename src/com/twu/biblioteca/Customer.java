@@ -39,4 +39,8 @@ public class Customer {
             oldBook.checkIn();
         }
     }
+
+    public Book findBookIfAvailableToReturn(Book book){
+        return null;
+    }
 }
