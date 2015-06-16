@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -129,6 +129,10 @@ public class LibraryManagementSystemTest {
 
         LMS.showFlashMessage("unsuccessful return");
         assertEquals("That is not a valid book to return.\n", outStream.toString());
+        outStream.reset();
+
+        LMS.showFlashMessage("invalid book option");
+        assertEquals("Your operation is not available.\n", outStream.toString());
     }
 
     @Test
@@ -158,5 +162,42 @@ public class LibraryManagementSystemTest {
                 "gone with the wind Margaret Mitchell 1980\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
+    }
+
+    @Test
+    public void testProcessBookOperations() {
+        LMS.processBookOperations("borrow Harry Potter");
+        assertEquals("That book is not available.\n", outStream.toString());
+        outStream.reset();
+
+        LMS.processBookOperations("borrow gone with the wind");
+        assertEquals("Thank you! Enjoy the book.\n", outStream.toString());
+        outStream.reset();
+        assertEquals(1, currentCustomer.getBorrowedBooksList().size());
+        assertTrue(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
+        assertEquals("gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getBookName());
+
+        LMS.processBookOperations("buy gone with the wind");
+        assertEquals("Your operation is not available.\n", outStream.toString());
+        outStream.reset();
+
+        LMS.processBookOperations("return Hello Potter");
+        assertEquals("That is not a valid book to return.\n", outStream.toString());
+        outStream.reset();
+
+        LMS.processBookOperations("return gone with the wind");
+        assertEquals("Thank you for returning the book.\n", outStream.toString());
+        outStream.reset();
+        assertEquals(0, currentCustomer.getBorrowedBooksList().size());
+        assertFalse(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
+    }
+
+    @Test
+    public void testFindBookIfAvailable(){
+        currentCustomer.borrowBook(bookA);
+        assertNull(LMS.findBookIfAvailable(bookA.getBookName()));
+        assertNotNull(LMS.findBookIfAvailable(bookB.getBookName()));
+        currentCustomer.borrowBook(bookB);
+        assertNull(LMS.findBookIfAvailable(bookB.getBookName()));
     }
 }

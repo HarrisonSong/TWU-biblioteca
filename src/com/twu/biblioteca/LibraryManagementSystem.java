@@ -60,9 +60,9 @@ public class LibraryManagementSystem {
             System.out.println("Thank you for returning the book.");
         }else if(type.equals("unsuccessful return")){
             System.out.println("That is not a valid book to return.");
-            //<editor-fold desc="Description">
+        }else if(type.equals("invalid book option")){
+            System.out.println("Your operation is not available.");
         }
-        //</editor-fold>
     }
 
     public void processMainMenuOperations(String operation){
@@ -74,6 +74,22 @@ public class LibraryManagementSystem {
             }
         }
         showFlashMessage("invalid menu option");
+    }
+
+    public void processBookOperations(String operation){
+        String operationContent = operation.trim().toLowerCase();
+        if(operationContent.startsWith("borrow ")){
+            String book = operationContent.replace("borrow ", "");
+
+        }else if(operationContent.startsWith("return ")){
+            String book = operationContent.replace("return ", "");
+        }else{
+            showFlashMessage("invalid book option");
+        }
+    }
+
+    public Book findBookIfAvailable(String bookName){
+        return null;
     }
 
     private void showRemindingMessage() {
