@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
 import static com.twu.biblioteca.UserSystemPositions.*;
+import static com.twu.biblioteca.SystemOptions.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -191,7 +192,7 @@ public class LibraryManagementSystemTest {
         outStream.reset();
         assertEquals(0, currentCustomer.getBorrowedBooksList().size());
 
-        LMS.processBookOperations("back");
+        LMS.processBookOperations(SYSTEM_OPTION_BACK);
         assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
     }
 

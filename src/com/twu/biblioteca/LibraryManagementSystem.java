@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.SystemConstants.*;
+import static com.twu.biblioteca.SystemOptions.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
 import static com.twu.biblioteca.MainMenuOptions.*;
 import static com.twu.biblioteca.SystemMessageTypes.*;
@@ -27,7 +27,7 @@ public class LibraryManagementSystem {
         // To be changed later.
         this.mainMenu = new LinkedList<String>();
         this.mainMenu.add(MAIN_MENU_LIST_BOOKS_OPTION);
-        this.systemCurrentPosition = "main menu";
+        this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
     }
 
     public void startSystem(){
@@ -35,7 +35,7 @@ public class LibraryManagementSystem {
         showMainMenu();
         Scanner sc = new Scanner(System.in);
         String operation = sc.nextLine().trim().toLowerCase();
-        while(!operation.equals(QUIT_OPTION)){
+        while(!operation.equals(SYSTEM_OPTION_QUIT)){
             if(systemCurrentPosition.equals(SYSTEM_POSITION_MAIN_MENU)){
                 processMainMenuOperations(operation);
             }else if(systemCurrentPosition.equals(SYSTEM_POSITION_LIST_BOOKS)){
@@ -124,7 +124,7 @@ public class LibraryManagementSystem {
                 showFlashMessage(UNSUCCESSFUL_RETURN_MESSAGE_TYPE);
             }
             showRemindingMessage();
-        }else if(operationContent.equals(BACK_OPTION)){
+        }else if(operationContent.equals(SYSTEM_OPTION_BACK)){
             this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
         }else{
