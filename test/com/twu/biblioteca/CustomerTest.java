@@ -118,47 +118,59 @@ public class CustomerTest {
     }
 
     @Test
-    public void testCustomerBBorrowBookB() {
+    public void testCustomerAReturnBookA() {
         customerA.borrowBook(bookA);
-        assertTrue(bookA.getCheckOutStatus());
-        assertEquals(1, customerA.getBorrowedBooksList().size());
-        assertEquals(bookA,customerA.getBorrowedBooksList().getLast());
-
         customerA.borrowBook(bookB);
-        assertTrue(bookB.getCheckOutStatus());
-        assertEquals(2, customerA.getBorrowedBooksList().size());
-        assertEquals(bookB,customerA.getBorrowedBooksList().getLast());
-
         customerA.borrowBook(bookC);
-        assertTrue(bookC.getCheckOutStatus());
-        assertEquals(3, customerA.getBorrowedBooksList().size());
-        assertEquals(bookC, customerA.getBorrowedBooksList().getLast());
+        customerA.returnBook(bookA);
 
-        customerA.borrowBook(bookA);
-        assertEquals(3, customerA.getBorrowedBooksList().size());
-        assertEquals(bookC, customerA.getBorrowedBooksList().getLast());
+        assertFalse(bookA.getCheckOutStatus());
+        assertEquals(2, customerA.getBorrowedBooksList().size());
+        assertTrue(customerA.getBorrowedBooksList().contains(bookB));
+        assertTrue(customerA.getBorrowedBooksList().contains(bookC));
     }
 
     @Test
-    public void testCustomerReturnBook() {
+    public void testCustomerAReturnBookAAndBookC(){
         customerA.borrowBook(bookA);
         customerA.borrowBook(bookB);
         customerA.borrowBook(bookC);
-
         customerA.returnBook(bookA);
-        assertFalse(bookA.getCheckOutStatus());
-        assertEquals(2, customerA.getBorrowedBooksList().size());
-
-        customerA.returnBook(bookB);
-        assertFalse(bookB.getCheckOutStatus());
-        assertEquals(1, customerA.getBorrowedBooksList().size());
-
-        customerA.returnBook(bookA);
-        assertEquals(1, customerA.getBorrowedBooksList().size());
-
         customerA.returnBook(bookC);
+
+        assertFalse(bookA.getCheckOutStatus());
         assertFalse(bookC.getCheckOutStatus());
-        assertEquals(0, customerA.getBorrowedBooksList().size());
+        assertEquals(1, customerA.getBorrowedBooksList().size());
+        assertTrue(customerA.getBorrowedBooksList().contains(bookB));
+    }
+
+    @Test
+    public void testCustomerBReturnBookBAndReturnBookBAgain(){
+        customerB.borrowBook(bookA);
+        customerB.borrowBook(bookB);
+        customerB.borrowBook(bookC);
+        customerB.returnBook(bookB);
+        customerB.returnBook(bookB);
+
+        assertFalse(bookB.getCheckOutStatus());
+        assertEquals(2, customerB.getBorrowedBooksList().size());
+        assertTrue(customerB.getBorrowedBooksList().contains(bookA));
+        assertTrue(customerB.getBorrowedBooksList().contains(bookC));
+    }
+
+    @Test
+    public void testCustomerBReturnBookBAndBookCAndReturnBookBAgain(){
+        customerB.borrowBook(bookA);
+        customerB.borrowBook(bookB);
+        customerB.borrowBook(bookC);
+        customerB.returnBook(bookB);
+        customerB.returnBook(bookC);
+        customerB.returnBook(bookB);
+
+        assertFalse(bookB.getCheckOutStatus());
+        assertFalse(bookC.getCheckOutStatus());
+        assertEquals(1, customerB.getBorrowedBooksList().size());
+        assertTrue(customerB.getBorrowedBooksList().contains(bookA));
     }
 
     @Test
