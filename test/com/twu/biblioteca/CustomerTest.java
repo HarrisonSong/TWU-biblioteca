@@ -174,11 +174,38 @@ public class CustomerTest {
     }
 
     @Test
-    public void testFindBookIfAvailableToReturn(){
+    public void testCustomerAFindBookACanBeReturnAfterBorrowBookA(){
+        customerA.borrowBook(bookA);
+        assertNotNull(customerA.findBookIfAvailableToReturn(bookA.getBookName()));
+    }
+
+    @Test
+    public void testCustomerAFindBookACanBeReturnAfterBorrowBookAAndBookC(){
         customerA.borrowBook(bookA);
         customerA.borrowBook(bookC);
-        assertNull(customerA.findBookIfAvailableToReturn(bookB.getBookName().toLowerCase()));
-        assertNotNull(customerA.findBookIfAvailableToReturn(bookA.getBookName().toLowerCase()));
-        assertNotNull(customerA.findBookIfAvailableToReturn(bookC.getBookName().toLowerCase()));
+        assertNotNull(customerA.findBookIfAvailableToReturn(bookA.getBookName()));
+    }
+
+    @Test
+    public void testCustomerAFindBookBCanNotBeReturnAfterBorrowBookAAndBookC(){
+        customerA.borrowBook(bookA);
+        customerA.borrowBook(bookC);
+        assertNull(customerA.findBookIfAvailableToReturn(bookB.getBookName()));
+    }
+
+    @Test
+    public void testCustomerBFindBookAAndBookBCanBeReturnAfterBorrowBookABookBAndBookC(){
+        customerB.borrowBook(bookA);
+        customerB.borrowBook(bookB);
+        customerB.borrowBook(bookC);
+        assertNotNull(customerB.findBookIfAvailableToReturn(bookA.getBookName()));
+        assertNotNull(customerB.findBookIfAvailableToReturn(bookB.getBookName()));
+    }
+
+    @Test
+    public void testCustomerBFindBookCCanNotBeReturnAfterBorrowBookAAndBookB(){
+        customerA.borrowBook(bookA);
+        customerA.borrowBook(bookB);
+        assertNull(customerB.findBookIfAvailableToReturn(bookC.getBookName()));
     }
 }
