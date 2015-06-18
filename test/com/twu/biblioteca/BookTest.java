@@ -78,8 +78,12 @@ public class BookTest {
     }
 
     @Test
-    public void testBookEquality() {
+    public void testBookAEqualsToBookA(){
         assertEquals(bookA, bookA);
+    }
+
+    @Test
+    public void testBookADoesNotEqualToBookB(){
         assertNotEquals(bookA, bookB);
     }
 }
