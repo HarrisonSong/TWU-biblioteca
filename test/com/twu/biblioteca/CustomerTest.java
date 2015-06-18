@@ -24,13 +24,23 @@ public class CustomerTest {
     }
 
     @Test
-    public void testGetCustomerName() {
-        assertEquals(DEFAULT_USERNAME, customerA.getCustomerName());
+    public void testCustomerAName() {
+        assertEquals(CUSTOMER_ONE_NAME, customerA.getCustomerName());
     }
 
     @Test
-    public void testCustomerBorrowedBooksListIsEmpty() {
+    public void testCustomerBName() {
+        assertEquals(CUSTOMER_TWO_NAME, customerB.getCustomerName());
+    }
+
+    @Test
+    public void testCustomerAInitialBorrowedBooksListIsEmpty() {
         assertEquals(0, customerA.getBorrowedBooksList().size());
+    }
+
+    @Test
+    public void testCustomerBInitialBorrowedBooksListIsEmpty() {
+        assertEquals(0, customerB.getBorrowedBooksList().size());
     }
 
     @Test
