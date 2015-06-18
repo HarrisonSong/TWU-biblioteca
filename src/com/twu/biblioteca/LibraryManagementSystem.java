@@ -16,17 +16,13 @@ import static com.twu.biblioteca.SystemMessages.*;
 public class LibraryManagementSystem {
     private Customer currentCustomer;
     private LinkedList<Book> booksList;
-    private LinkedList<String> mainMenu;
+    private MainMenu mainMenu;
     private String systemCurrentPosition;
 
-    public LibraryManagementSystem(LinkedList<Book> books){
+    public LibraryManagementSystem(LinkedList<Book> books, LinkedList<String> menuList){
         this.booksList = books;
         currentCustomer = new Customer(DEFAULT_USERNAME);
-
-        // Initialize the menu list in the constructor first.
-        // To be changed later.
-        this.mainMenu = new LinkedList<String>();
-        this.mainMenu.add(MAIN_MENU_LIST_BOOKS_OPTION);
+        this.mainMenu = new MainMenu(menuList);
         this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
     }
 
@@ -58,9 +54,7 @@ public class LibraryManagementSystem {
     }
 
     public void showMainMenu() {
-        for(String item : this.mainMenu){
-            System.out.println(item);
-        }
+        this.mainMenu.showMainMenu();
         showRemindingMessage();
     }
 
@@ -92,7 +86,7 @@ public class LibraryManagementSystem {
 
     public void processMainMenuOperations(String operation){
         String operationContent = operation.trim().toLowerCase();
-        for(String option : this.mainMenu){
+        for(String option : this.mainMenu.getMenuList()){
             if(option.equals(MAIN_MENU_LIST_BOOKS_OPTION) && option.toLowerCase().equals(operationContent)){
                 showBooksList();
                 this.systemCurrentPosition = SYSTEM_POSITION_LIST_BOOKS;

@@ -8,8 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
 import static com.twu.biblioteca.MainMenuOptions.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**

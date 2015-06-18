@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
+import static com.twu.biblioteca.MainMenuOptions.MAIN_MENU_LIST_BOOKS_OPTION;
 import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
@@ -41,7 +42,10 @@ public class LibraryManagementSystemTest {
         booksList.add(bookC);
         booksList.add(bookD);
         booksList.add(bookE);
-        LMS = new LibraryManagementSystem(booksList);
+
+        LinkedList<String> menuList = new LinkedList<String>();
+        menuList.add(MAIN_MENU_LIST_BOOKS_OPTION);
+        LMS = new LibraryManagementSystem(booksList, menuList);
         currentCustomer = LMS.getCurrentCustomer();
     }
 
@@ -59,14 +63,14 @@ public class LibraryManagementSystemTest {
     @Test
     public void testShowWelcomeMessage() {
         LMS.showWelcomeMessage();
-        assertEquals("Welcome to biblioteca library management system.\n" +
-                "Below is the operations you can do.\n", outStream.toString());
+        assertEquals("Welcome to Biblioteca library management system.\n", outStream.toString());
     }
 
     @Test
     public void testShowMainMenu() {
         LMS.showMainMenu();
-        assertEquals("List Books\n" +
+        assertEquals("Main Menu\n" +
+                "List Books\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
     }
 
