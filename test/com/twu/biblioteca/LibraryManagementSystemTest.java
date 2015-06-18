@@ -10,6 +10,7 @@ import java.util.LinkedList;
 
 import static com.twu.biblioteca.SystemConstants.*;
 import static org.junit.Assert.*;
+import static com.twu.biblioteca.PredefinedBooksDetails.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -26,11 +27,11 @@ public class LibraryManagementSystemTest {
         System.setOut(new PrintStream(outStream));
         System.setErr(new PrintStream(errStream));
 
-        bookA = new Book("One Hundred Years of Solitude", "Gabriel García Márquez", 1910);
-        bookB = new Book("The Old Man and the Sea", "Ernest Hemingway", 1990);
-        bookC = new Book("Programming Pearl", "Jon Bentley", 2003);
-        bookD = new Book("Hamlet", "Shakespeare", 1972);
-        bookE = new Book("gone with the wind", "Margaret Mitchell", 1980);
+        bookA = new Book(BOOK_ONE_NAME, BOOK_ONE_AUTHOR, BOOK_ONE_PUBLISHING_YEAR);
+        bookB = new Book(BOOK_TWO_NAME, BOOK_TWO_AUTHOR, BOOK_TWO_PUBLISHING_YEAR);
+        bookC = new Book(BOOK_THREE_NAME, BOOK_THREE_AUTHOR, BOOK_THREE_PUBLISHING_YEAR);
+        bookD = new Book(BOOK_FOUR_NAME, BOOK_FOUR_AUTHOR, BOOK_FOUR_PUBLISHING_YEAR);
+        bookE = new Book(BOOK_FIVE_NAME, BOOK_FIVE_AUTHOR, BOOK_FIVE_PUBLISHING_YEAR);
 
         LinkedList<Book> booksList = new LinkedList<Book>();
         booksList.add(bookA);
@@ -74,7 +75,7 @@ public class LibraryManagementSystemTest {
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Programming Pearl Jon Bentley 2003\n" +
                 "Hamlet Shakespeare 1972\n" +
-                "gone with the wind Margaret Mitchell 1980\n" +
+                "Gone with the wind Margaret Mitchell 1980\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
@@ -82,7 +83,7 @@ public class LibraryManagementSystemTest {
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Hamlet Shakespeare 1972\n" +
-                "gone with the wind Margaret Mitchell 1980\n" +
+                "Gone with the wind Margaret Mitchell 1980\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
@@ -153,7 +154,7 @@ public class LibraryManagementSystemTest {
                 "The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Programming Pearl Jon Bentley 2003\n" +
                 "Hamlet Shakespeare 1972\n" +
-                "gone with the wind Margaret Mitchell 1980\n" +
+                "Gone with the wind Margaret Mitchell 1980\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
         assertEquals("list books", LMS.getSystemCurrentPosition());
     }
@@ -168,14 +169,14 @@ public class LibraryManagementSystemTest {
         assertEquals("That book is not available.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        LMS.processBookOperations("borrow gone with the wind");
+        LMS.processBookOperations("borrow Gone with the wind");
         assertEquals("Thank you! Enjoy the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
         assertEquals(1, currentCustomer.getBorrowedBooksList().size());
         assertTrue(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
-        assertEquals("gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getBookName());
+        assertEquals("Gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getBookName());
 
-        LMS.processBookOperations("buy gone with the wind");
+        LMS.processBookOperations("buy Gone with the wind");
         assertEquals("Your operation is not available.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
@@ -184,7 +185,7 @@ public class LibraryManagementSystemTest {
         outStream.reset();
 
 
-        LMS.processBookOperations("return gone with the wind");
+        LMS.processBookOperations("return Gone with the wind");
         assertEquals("Thank you for returning the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
         assertEquals(0, currentCustomer.getBorrowedBooksList().size());

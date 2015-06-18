@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static com.twu.biblioteca.PredefinedBooksDetails.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -12,26 +13,26 @@ public class BookTest {
     private Book bookA, bookB;
     @Before
     public void setup() {
-        bookA = new Book("Hamlet", "Shakespeare", 1972);
-        bookB = new Book("gone with the wind", "Margaret Mitchell", 1980);
+        bookA = new Book(BOOK_FOUR_NAME, BOOK_FOUR_AUTHOR, BOOK_FOUR_PUBLISHING_YEAR);
+        bookB = new Book(BOOK_FIVE_NAME, BOOK_FIVE_AUTHOR, BOOK_FIVE_PUBLISHING_YEAR);
     }
 
     @Test
     public void testIdBookNameIsCorrect() {
-        assertEquals("Hamlet", bookA.getBookName());
-        assertEquals("gone with the wind", bookB.getBookName());
+        assertEquals(BOOK_FOUR_NAME, bookA.getBookName());
+        assertEquals(BOOK_FIVE_NAME, bookB.getBookName());
     }
 
     @Test
     public void testIfBookAuthorIsCorrect() {
-        assertEquals("Shakespeare", bookA.getAuthor());
-        assertEquals("Margaret Mitchell", bookB.getAuthor());
+        assertEquals(BOOK_FOUR_AUTHOR, bookA.getAuthor());
+        assertEquals(BOOK_FIVE_AUTHOR, bookB.getAuthor());
     }
 
     @Test
     public void testIfBookPublishingTimeIsCorrect() {
-        assertEquals(1972, bookA.getPublishingYear());
-        assertEquals(1980, bookB.getPublishingYear());
+        assertEquals(BOOK_FOUR_PUBLISHING_YEAR, bookA.getPublishingYear());
+        assertEquals(BOOK_FIVE_PUBLISHING_YEAR, bookB.getPublishingYear());
     }
 
     @Test

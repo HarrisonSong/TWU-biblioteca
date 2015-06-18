@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static com.twu.biblioteca.PredefinedBooksDetails.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -15,9 +16,9 @@ public class CustomerTest {
     @Before
     public void setup() {
         customer = new Customer("Song Qiyue");
-        bookA = new Book("One Hundred Years of Solitude", "Gabriel García Márquez", 1910);
-        bookB = new Book("The Old Man and the Sea", "Ernest Hemingway", 1990);
-        bookC = new Book("Programming Pearl", "Jon Bentley", 2003);
+        bookA = new Book(BOOK_ONE_NAME, BOOK_ONE_AUTHOR, BOOK_ONE_PUBLISHING_YEAR);
+        bookB = new Book(BOOK_TWO_NAME, BOOK_TWO_AUTHOR, BOOK_TWO_PUBLISHING_YEAR);
+        bookC = new Book(BOOK_THREE_NAME, BOOK_THREE_AUTHOR, BOOK_THREE_PUBLISHING_YEAR);
     }
 
     @Test

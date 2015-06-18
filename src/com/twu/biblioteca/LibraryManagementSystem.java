@@ -116,7 +116,7 @@ public class LibraryManagementSystem {
                 currentCustomer.returnBook(targetBook);
                 showFlashMessage(SUCCESSFUL_RETURN);
             }else{
-                showFlashMessage(SUCCESSFUL_RETURN_MESSAGE);
+                showFlashMessage(UNSUCCESSFUL_RETURN);
             }
             showRemindingMessage();
         }else if(operationContent.equals(BACK_OPTION)){
