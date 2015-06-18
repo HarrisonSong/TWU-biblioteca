@@ -3,8 +3,9 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
+import static org.junit.Assert.*;
+import static com.twu.biblioteca.PredefinedUserDetails.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -15,7 +16,7 @@ public class CustomerTest {
 
     @Before
     public void setup() {
-        customer = new Customer("Song Qiyue");
+        customer = new Customer(DEFAULT_USERNAME);
         bookA = new Book(BOOK_ONE_NAME, BOOK_ONE_AUTHOR, BOOK_ONE_PUBLISHING_YEAR);
         bookB = new Book(BOOK_TWO_NAME, BOOK_TWO_AUTHOR, BOOK_TWO_PUBLISHING_YEAR);
         bookC = new Book(BOOK_THREE_NAME, BOOK_THREE_AUTHOR, BOOK_THREE_PUBLISHING_YEAR);
@@ -23,7 +24,7 @@ public class CustomerTest {
 
     @Test
     public void testGetCustomerName() {
-        assertEquals("Song Qiyue", customer.getCustomerName());
+        assertEquals(DEFAULT_USERNAME, customer.getCustomerName());
     }
 
     @Test

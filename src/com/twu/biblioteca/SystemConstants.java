@@ -4,7 +4,6 @@ package com.twu.biblioteca;
  * Created by qiyuesong on 16/6/15.
  */
 public class SystemConstants {
-    public static final String SYSTEM_DEFAULT_USERNAME = "Default Customer";
     public static final String MAIN_MENU_LIST_BOOKS_OPTION = "List Books";
     public static final String QUIT_OPTION = "quit";
     public static final String SYSTEM_POSITION_MAIN_MENU = "main menu";

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import static com.twu.biblioteca.SystemConstants.*;
+import static com.twu.biblioteca.PredefinedUserDetails.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -16,7 +17,7 @@ public class LibraryManagementSystem {
 
     public LibraryManagementSystem(LinkedList<Book> books){
         this.booksList = books;
-        currentCustomer = new Customer(SYSTEM_DEFAULT_USERNAME);
+        currentCustomer = new Customer(DEFAULT_USERNAME);
 
         // Initialize the menu list in the constructor first.
         // To be changed later.
