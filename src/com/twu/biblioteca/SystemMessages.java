@@ -5,7 +5,7 @@ package com.twu.biblioteca;
  */
 public class SystemMessages {
 
-    public static final String WELCOME_MESSAGE = "Welcome to biblioteca library management system.\nBelow is the operations you can do.";
+    public static final String WELCOME_MESSAGE = "Welcome to Biblioteca library management system.";
     public static final String INVALID_MENU_OPTION_MESSAGE = "Select a valid option!";
     public static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the book.";
     public static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "That book is not available.";
