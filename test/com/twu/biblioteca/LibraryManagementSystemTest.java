@@ -118,32 +118,6 @@ public class LibraryManagementSystemTest {
     }
 
     @Test
-    public void testShowFlashMessage() {
-        LMS.showFlashMessage("invalid menu option");
-        assertEquals("Select a valid option!\n", outStream.toString());
-        outStream.reset();
-
-        LMS.showFlashMessage("successful checkout");
-        assertEquals("Thank you! Enjoy the book.\n", outStream.toString());
-        outStream.reset();
-
-        LMS.showFlashMessage("unsuccessful checkout");
-        assertEquals("That book is not available.\n", outStream.toString());
-        outStream.reset();
-
-        LMS.showFlashMessage("successful return");
-        assertEquals("Thank you for returning the book.\n", outStream.toString());
-        outStream.reset();
-
-        LMS.showFlashMessage("unsuccessful return");
-        assertEquals("That is not a valid book to return.\n", outStream.toString());
-        outStream.reset();
-
-        LMS.showFlashMessage("invalid book option");
-        assertEquals("Your operation is not available.\n", outStream.toString());
-    }
-
-    @Test
     public void testProcessMainMenuOperations(){
         LMS.processMainMenuOperations("buy book");
         assertEquals("Select a valid option!\n", outStream.toString());

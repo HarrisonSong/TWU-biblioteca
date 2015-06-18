@@ -7,12 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.SystemMessageTypeContants.*;
-import static com.twu.biblioteca.SystemMessageTypeContants.INVALID_BOOK_OPTION_MESSAGE_TYPE;
-import static com.twu.biblioteca.SystemMessageTypeContants.UNSUCCESSFUL_RETURN_MESSAGE_TYPE;
 import static com.twu.biblioteca.SystemMessageContants.*;
-import static com.twu.biblioteca.SystemMessageContants.INVALID_BOOK_OPTION_MESSAGE;
-import static com.twu.biblioteca.SystemMessageContants.UNSUCCESSFUL_RETURN_MESSAGE;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -45,37 +40,37 @@ public class SystemMessagerTest {
 
     @Test
     public void testShowInvalidMenuOptionMessage(){
-        SystemMessager.showResponseMessage(INVALID_MENU_OPTION_MESSAGE_TYPE);
+        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_MENU_OPTION);
         assertEquals(INVALID_MENU_OPTION_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulCheckOutMessage(){
-        SystemMessager.showResponseMessage(SUCCESSFUL_CHECKOUT_MESSAGE_TYPE);
+        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT);
         assertEquals(SUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulCheckOutMessage(){
-        SystemMessager.showResponseMessage(UNSUCCESSFUL_CHECKOUT_MESSAGE_TYPE);
+        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT);
         assertEquals(UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulReturnMessage(){
-        SystemMessager.showResponseMessage(SUCCESSFUL_RETURN_MESSAGE_TYPE);
+        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_RETURN);
         assertEquals(SUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulReturnMessage(){
-        SystemMessager.showResponseMessage(UNSUCCESSFUL_RETURN_MESSAGE_TYPE);
+        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN);
         assertEquals(UNSUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowInvalidBookOptionMessage(){
-        SystemMessager.showResponseMessage(INVALID_BOOK_OPTION_MESSAGE_TYPE);
+        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION);
         assertEquals(INVALID_BOOK_OPTION_MESSAGE + "\n", outStream.toString());
     }
 }
