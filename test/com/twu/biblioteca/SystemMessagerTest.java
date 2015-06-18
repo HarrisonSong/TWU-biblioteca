@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.SystemMessageContants.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -29,48 +28,48 @@ public class SystemMessagerTest {
     @Test
     public void testShowWelcomeMessage(){
         SystemMessager.showWelcomeMessage();
-        assertEquals(WELCOME_MESSAGE + "\n", outStream.toString());
+        assertEquals(SystemMessager.WELCOME_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowRemindingMessage(){
         SystemMessager.showRemindingMessage();
-        assertEquals(REMINDING_MESSAGE, outStream.toString());
+        assertEquals(SystemMessager.REMINDING_MESSAGE, outStream.toString());
     }
 
     @Test
     public void testShowInvalidMenuOptionMessage(){
         SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_MENU_OPTION);
-        assertEquals(INVALID_MENU_OPTION_MESSAGE + "\n", outStream.toString());
+        assertEquals(SystemMessager.INVALID_MENU_OPTION_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulCheckOutMessage(){
         SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT);
-        assertEquals(SUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
+        assertEquals(SystemMessager.SUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulCheckOutMessage(){
         SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT);
-        assertEquals(UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
+        assertEquals(SystemMessager.UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulReturnMessage(){
         SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_RETURN);
-        assertEquals(SUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
+        assertEquals(SystemMessager.SUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulReturnMessage(){
         SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN);
-        assertEquals(UNSUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
+        assertEquals(SystemMessager.UNSUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowInvalidBookOptionMessage(){
         SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION);
-        assertEquals(INVALID_BOOK_OPTION_MESSAGE + "\n", outStream.toString());
+        assertEquals(SystemMessager.INVALID_BOOK_OPTION_MESSAGE + "\n", outStream.toString());
     }
 }
