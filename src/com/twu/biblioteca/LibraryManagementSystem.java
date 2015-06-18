@@ -3,11 +3,12 @@ package com.twu.biblioteca;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.SystemOptionConstants.*;
-import static com.twu.biblioteca.PredefinedUserDetails.*;
-import static com.twu.biblioteca.MainMenuOptionConstants.*;
-import static com.twu.biblioteca.UserSystemPositions.*;
-import static com.twu.biblioteca.SystemMessageContants.*;
+import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_BOOKS_OPTION;
+import static com.twu.biblioteca.PredefinedUserDetails.DEFAULT_USERNAME;
+import static com.twu.biblioteca.SystemOptionConstants.SYSTEM_OPTION_BACK;
+import static com.twu.biblioteca.SystemOptionConstants.SYSTEM_OPTION_QUIT;
+import static com.twu.biblioteca.UserSystemPositions.SYSTEM_POSITION_LIST_BOOKS;
+import static com.twu.biblioteca.UserSystemPositions.SYSTEM_POSITION_MAIN_MENU;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -26,7 +27,7 @@ public class LibraryManagementSystem {
     }
 
     public void startSystem(){
-        showWelcomeMessage();
+        SystemMessager.showWelcomeMessage();
         showMainMenu();
         Scanner sc = new Scanner(System.in);
         String operation = sc.nextLine().trim().toLowerCase();
@@ -48,13 +49,9 @@ public class LibraryManagementSystem {
         return this.systemCurrentPosition;
     }
 
-    public void showWelcomeMessage() {
-        System.out.println(WELCOME_MESSAGE);
-    }
-
     public void showMainMenu() {
         this.mainMenu.showMainMenu();
-        showRemindingMessage();
+        SystemMessager.showRemindingMessage();
     }
 
     public void showBooksList() {
@@ -64,7 +61,7 @@ public class LibraryManagementSystem {
                 System.out.println(currentBook.getBookName() + " " + currentBook.getAuthor() + " " + currentBook.getPublishingYear());
             }
         }
-        showRemindingMessage();
+        SystemMessager.showRemindingMessage();
     }
 
     public void processMainMenuOperations(String operation){
@@ -90,7 +87,7 @@ public class LibraryManagementSystem {
             }else {
                 SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT);
             }
-            showRemindingMessage();
+            SystemMessager.showRemindingMessage();
         }else if(operationContent.startsWith("return ")){
             String book = operationContent.replace("return ", "");
             Book targetBook = currentCustomer.findBookIfAvailableToReturn(book);
@@ -100,13 +97,13 @@ public class LibraryManagementSystem {
             }else{
                 SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN);
             }
-            showRemindingMessage();
+            SystemMessager.showRemindingMessage();
         }else if(operationContent.equals(SYSTEM_OPTION_BACK)){
             this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
         }else{
             SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION);
-            showRemindingMessage();
+            SystemMessager.showRemindingMessage();
         }
     }
 
@@ -117,9 +114,5 @@ public class LibraryManagementSystem {
             }
         }
         return null;
-    }
-
-    private void showRemindingMessage() {
-        System.out.print(REMINDING_MESSAGE);
     }
 }

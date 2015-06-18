@@ -61,20 +61,6 @@ public class LibraryManagementSystemTest {
     }
 
     @Test
-    public void testShowWelcomeMessage() {
-        LMS.showWelcomeMessage();
-        assertEquals("Welcome to Biblioteca library management system.\n", outStream.toString());
-    }
-
-    @Test
-    public void testShowMainMenu() {
-        LMS.showMainMenu();
-        assertEquals("Main Menu\n" +
-                "List Books\n" +
-                "Please type in the operation you want to do: ", outStream.toString());
-    }
-
-    @Test
     public void testShowAvailableBookList() {
         currentCustomer.borrowBook(bookA);
         LMS.showBooksList();
