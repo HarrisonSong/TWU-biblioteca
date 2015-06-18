@@ -7,6 +7,7 @@ import static com.twu.biblioteca.SystemConstants.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
 import static com.twu.biblioteca.MainMenuOptions.*;
 import static com.twu.biblioteca.UserSystemPositions.*;
+import static com.twu.biblioteca.SystemMessages.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
