@@ -5,6 +5,8 @@ package com.twu.biblioteca;
  */
 public class PredefinedUserDetails {
 
-    public static final String DEFAULT_USERNAME = "Song Qiyue";
+    public static final String DEFAULT_USERNAME = "Default Customer";
+    public static final String CUSTOMER_ONE_NAME = "Li Lei";
+    public static final String CUSTOMER_TWO_NAME = "Han Meimei";
 
 }
