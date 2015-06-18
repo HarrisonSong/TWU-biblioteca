@@ -48,14 +48,29 @@ public class BookTest {
     }
 
     @Test
-    public void testBookCheckoutAndCheckInOperations() {
+    public void testBookACheckOutStatusAfterBookAIsCheckedOut(){
         assertFalse(bookA.getCheckOutStatus());
+        bookA.checkOut();
+        assertTrue(bookA.getCheckOutStatus());
+    }
+
+    @Test
+    public void testBookBCheckOutStatusAfterBookBIsCheckedOut(){
+        assertFalse(bookB.getCheckOutStatus());
+        bookB.checkOut();
+        assertTrue(bookB.getCheckOutStatus());
+    }
+
+    @Test
+    public void testBookACheckOutStatusAfterBookAIsReturn(){
         bookA.checkOut();
         assertTrue(bookA.getCheckOutStatus());
         bookA.checkIn();
         assertFalse(bookA.getCheckOutStatus());
+    }
 
-        assertFalse(bookB.getCheckOutStatus());
+    @Test
+    public void testBookBCheckOutStatusAfterBookBIsReturn(){
         bookB.checkOut();
         assertTrue(bookB.getCheckOutStatus());
         bookB.checkIn();
