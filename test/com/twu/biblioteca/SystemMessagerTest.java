@@ -34,7 +34,7 @@ public class SystemMessagerTest {
     @Test
     public void testShowWelcomeMessage(){
         SystemMessager.showWelcomeMessage();
-        assertEquals(WELCOME_MESSAGE, outStream.toString());
+        assertEquals(WELCOME_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
@@ -46,36 +46,36 @@ public class SystemMessagerTest {
     @Test
     public void testShowInvalidMenuOptionMessage(){
         SystemMessager.showResponseMessage(INVALID_MENU_OPTION_MESSAGE_TYPE);
-        assertEquals(INVALID_MENU_OPTION_MESSAGE, outStream.toString());
+        assertEquals(INVALID_MENU_OPTION_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulCheckOutMessage(){
         SystemMessager.showResponseMessage(SUCCESSFUL_CHECKOUT_MESSAGE_TYPE);
-        assertEquals(SUCCESSFUL_CHECKOUT_MESSAGE, outStream.toString());
+        assertEquals(SUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulCheckOutMessage(){
         SystemMessager.showResponseMessage(UNSUCCESSFUL_CHECKOUT_MESSAGE_TYPE);
-        assertEquals(UNSUCCESSFUL_CHECKOUT_MESSAGE, outStream.toString());
+        assertEquals(UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulReturnMessage(){
         SystemMessager.showResponseMessage(SUCCESSFUL_RETURN_MESSAGE_TYPE);
-        assertEquals(SUCCESSFUL_RETURN_MESSAGE, outStream.toString());
+        assertEquals(SUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulReturnMessage(){
         SystemMessager.showResponseMessage(UNSUCCESSFUL_RETURN_MESSAGE_TYPE);
-        assertEquals(UNSUCCESSFUL_RETURN_MESSAGE, outStream.toString());
+        assertEquals(UNSUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowInvalidBookOptionMessage(){
         SystemMessager.showResponseMessage(INVALID_BOOK_OPTION_MESSAGE_TYPE);
-        assertEquals(INVALID_BOOK_OPTION_MESSAGE, outStream.toString());
+        assertEquals(INVALID_BOOK_OPTION_MESSAGE + "\n", outStream.toString());
     }
 }
