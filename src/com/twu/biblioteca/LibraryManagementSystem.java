@@ -6,6 +6,7 @@ import java.util.Scanner;
 import static com.twu.biblioteca.SystemConstants.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
 import static com.twu.biblioteca.MainMenuOptions.*;
+import static com.twu.biblioteca.SystemMessageTypes.*;
 import static com.twu.biblioteca.UserSystemPositions.*;
 import static com.twu.biblioteca.SystemMessages.*;
 
@@ -74,17 +75,17 @@ public class LibraryManagementSystem {
     }
 
     public void showFlashMessage(String type){
-        if(type.equals(INVALID_MENU_OPTION)){
+        if(type.equals(INVALID_MENU_OPTION_MESSAGE_TYPE)){
             System.out.println(INVALID_MENU_OPTION_MESSAGE);
-        }else if(type.equals(SUCCESSFUL_CHECKOUT)){
+        }else if(type.equals(SUCCESSFUL_CHECKOUT_MESSAGE_TYPE)){
             System.out.println(SUCCESSFUL_CHECKOUT_MESSAGE);
-        }else if(type.equals(UNSUCCESSFUL_CHECKOUT)){
+        }else if(type.equals(UNSUCCESSFUL_CHECKOUT_MESSAGE_TYPE)){
             System.out.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
-        }else if(type.equals(SUCCESSFUL_RETURN)){
+        }else if(type.equals(SUCCESSFUL_RETURN_MESSAGE_TYPE)){
             System.out.println(SUCCESSFUL_RETURN_MESSAGE);
-        }else if(type.equals(UNSUCCESSFUL_RETURN)){
+        }else if(type.equals(UNSUCCESSFUL_RETURN_MESSAGE_TYPE)){
             System.out.println(UNSUCCESSFUL_RETURN_MESSAGE);
-        }else if(type.equals(INVALID_BOOK_OPTION)){
+        }else if(type.equals(INVALID_BOOK_OPTION_MESSAGE_TYPE)){
             System.out.println(INVALID_BOOK_OPTION_MESSAGE);
         }
     }
@@ -98,7 +99,7 @@ public class LibraryManagementSystem {
                 return;
             }
         }
-        showFlashMessage(INVALID_MENU_OPTION);
+        showFlashMessage(INVALID_MENU_OPTION_MESSAGE_TYPE);
     }
 
     public void processBookOperations(String operation){
@@ -108,9 +109,9 @@ public class LibraryManagementSystem {
             Book targetBook = findBookIfAvailable(book);
             if(targetBook != null){
                 currentCustomer.borrowBook(targetBook);
-                showFlashMessage(SUCCESSFUL_CHECKOUT);
+                showFlashMessage(SUCCESSFUL_CHECKOUT_MESSAGE_TYPE);
             }else {
-                showFlashMessage(UNSUCCESSFUL_CHECKOUT);
+                showFlashMessage(UNSUCCESSFUL_CHECKOUT_MESSAGE_TYPE);
             }
             showRemindingMessage();
         }else if(operationContent.startsWith("return ")){
@@ -118,16 +119,16 @@ public class LibraryManagementSystem {
             Book targetBook = currentCustomer.findBookIfAvailableToReturn(book);
             if(targetBook != null){
                 currentCustomer.returnBook(targetBook);
-                showFlashMessage(SUCCESSFUL_RETURN);
+                showFlashMessage(SUCCESSFUL_RETURN_MESSAGE_TYPE);
             }else{
-                showFlashMessage(UNSUCCESSFUL_RETURN);
+                showFlashMessage(UNSUCCESSFUL_RETURN_MESSAGE_TYPE);
             }
             showRemindingMessage();
         }else if(operationContent.equals(BACK_OPTION)){
             this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
         }else{
-            showFlashMessage(INVALID_BOOK_OPTION);
+            showFlashMessage(INVALID_BOOK_OPTION_MESSAGE_TYPE);
             showRemindingMessage();
         }
     }
