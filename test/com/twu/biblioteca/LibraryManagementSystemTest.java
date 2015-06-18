@@ -8,9 +8,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static com.twu.biblioteca.SystemConstants.*;
-import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
+import static com.twu.biblioteca.PredefinedUserDetails.DEFAULT_USERNAME;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -51,7 +51,7 @@ public class LibraryManagementSystemTest {
 
     @Test
     public void testCurrentCustomer() {
-        assertEquals(SYSTEM_DEFAULT_USERNAME, currentCustomer.getCustomerName());
+        assertEquals(DEFAULT_USERNAME, currentCustomer.getCustomerName());
     }
 
     @Test

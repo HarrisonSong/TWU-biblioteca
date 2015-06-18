@@ -5,9 +5,6 @@ package com.twu.biblioteca;
  */
 public class SystemConstants {
 
-    //Main Menu Options
-    public static final String MAIN_MENU_LIST_BOOKS_OPTION = "List Books";
-
     //User Current Position
     public static final String SYSTEM_POSITION_MAIN_MENU = "main menu";
     public static final String SYSTEM_POSITION_LIST_BOOKS = "list books";

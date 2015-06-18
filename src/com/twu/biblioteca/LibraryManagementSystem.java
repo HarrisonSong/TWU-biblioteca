@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import static com.twu.biblioteca.SystemConstants.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
+import static com.twu.biblioteca.MainMenuOptions.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
