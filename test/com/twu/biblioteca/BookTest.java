@@ -18,20 +18,32 @@ public class BookTest {
     }
 
     @Test
-    public void testIdBookNameIsCorrect() {
+    public void testIfBookANameIsCorrect() {
         assertEquals(BOOK_FOUR_NAME, bookA.getBookName());
+    }
+
+    @Test
+    public void testIfBookBNameIsCorrect() {
         assertEquals(BOOK_FIVE_NAME, bookB.getBookName());
     }
 
     @Test
-    public void testIfBookAuthorIsCorrect() {
+    public void testIfBookAAuthorIsCorrect() {
         assertEquals(BOOK_FOUR_AUTHOR, bookA.getAuthor());
+    }
+
+    @Test
+    public void testIfBookBAAuthorIsCorrect() {
         assertEquals(BOOK_FIVE_AUTHOR, bookB.getAuthor());
     }
 
     @Test
-    public void testIfBookPublishingTimeIsCorrect() {
+    public void testIfBookAPublishingTimeIsCorrect() {
         assertEquals(BOOK_FOUR_PUBLISHING_YEAR, bookA.getPublishingYear());
+    }
+
+    @Test
+    public void testIfBookBPublishingTimeIsCorrect() {
         assertEquals(BOOK_FIVE_PUBLISHING_YEAR, bookB.getPublishingYear());
     }
 
