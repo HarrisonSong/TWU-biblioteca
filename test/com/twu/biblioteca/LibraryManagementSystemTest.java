@@ -8,9 +8,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static com.twu.biblioteca.PredefinedBooksDetails.*;
-import static com.twu.biblioteca.PredefinedUserDetails.DEFAULT_USERNAME;
 import static org.junit.Assert.*;
+import static com.twu.biblioteca.PredefinedBooksDetails.*;
+import static com.twu.biblioteca.PredefinedUserDetails.*;
+import static com.twu.biblioteca.UserSystemPositions.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -142,12 +143,12 @@ public class LibraryManagementSystemTest {
         LMS.processMainMenuOperations("buy book");
         assertEquals("Select a valid option!\n", outStream.toString());
         outStream.reset();
-        assertEquals("main menu", LMS.getSystemCurrentPosition());
+        assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
 
         LMS.processMainMenuOperations("sell book");
         assertEquals("Select a valid option!\n", outStream.toString());
         outStream.reset();
-        assertEquals("main menu", LMS.getSystemCurrentPosition());
+        assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
 
         LMS.processMainMenuOperations("List Books");
         assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
@@ -156,13 +157,13 @@ public class LibraryManagementSystemTest {
                 "Hamlet Shakespeare 1972\n" +
                 "Gone with the wind Margaret Mitchell 1980\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
-        assertEquals("list books", LMS.getSystemCurrentPosition());
+        assertEquals(SYSTEM_POSITION_LIST_BOOKS, LMS.getSystemCurrentPosition());
     }
 
     @Test
     public void testProcessBookOperations() {
         LMS.processMainMenuOperations("List Books");
-        assertEquals("list books", LMS.getSystemCurrentPosition());
+        assertEquals(SYSTEM_POSITION_LIST_BOOKS, LMS.getSystemCurrentPosition());
         outStream.reset();
 
         LMS.processBookOperations("borrow Harry Potter");
@@ -191,7 +192,7 @@ public class LibraryManagementSystemTest {
         assertEquals(0, currentCustomer.getBorrowedBooksList().size());
 
         LMS.processBookOperations("back");
-        assertEquals("main menu", LMS.getSystemCurrentPosition());
+        assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
     }
 
     @Test

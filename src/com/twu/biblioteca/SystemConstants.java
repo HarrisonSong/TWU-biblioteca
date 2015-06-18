@@ -5,10 +5,6 @@ package com.twu.biblioteca;
  */
 public class SystemConstants {
 
-    //User Current Position
-    public static final String SYSTEM_POSITION_MAIN_MENU = "main menu";
-    public static final String SYSTEM_POSITION_LIST_BOOKS = "list books";
-
     //System Messages
     public static final String WELCOME_MESSAGE = "Welcome to biblioteca library management system.\nBelow is the operations you can do.";
     public static final String INVALID_MENU_OPTION_MESSAGE = "Select a valid option!";
