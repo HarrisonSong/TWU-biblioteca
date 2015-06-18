@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 /**
  * Created by qiyuesong on 18/6/15.
  */
-public class SystemMessageTypes {
+public class SystemMessageTypeContants {
 
     public static final String INVALID_MENU_OPTION_MESSAGE_TYPE = "invalid menu option";
     public static final String SUCCESSFUL_CHECKOUT_MESSAGE_TYPE = "successful checkout";

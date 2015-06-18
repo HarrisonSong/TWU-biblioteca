@@ -8,12 +8,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static com.twu.biblioteca.MainMenuOptions.MAIN_MENU_LIST_BOOKS_OPTION;
+import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_BOOKS_OPTION;
 import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
 import static com.twu.biblioteca.UserSystemPositions.*;
-import static com.twu.biblioteca.SystemOptions.*;
+import static com.twu.biblioteca.SystemOptionConstants.*;
 
 /**
  * Created by qiyuesong on 16/6/15.

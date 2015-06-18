@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 /**
  * Created by qiyuesong on 18/6/15.
  */
-public class SystemMessages {
+public class SystemMessageContants {
 
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca library management system.";
     public static final String INVALID_MENU_OPTION_MESSAGE = "Select a valid option!";

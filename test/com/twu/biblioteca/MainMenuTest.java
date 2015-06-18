@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static com.twu.biblioteca.MainMenuOptions.*;
+import static com.twu.biblioteca.MainMenuOptionConstants.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -16,8 +16,8 @@ import static org.junit.Assert.assertTrue;
  * Created by qiyuesong on 18/6/15.
  */
 public class MainMenuTest {
-    private MainMenu menu;
     private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    private MainMenu menu;
 
     @Before
     public void setup() {

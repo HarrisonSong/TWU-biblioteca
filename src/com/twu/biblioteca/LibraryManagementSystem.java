@@ -3,12 +3,12 @@ package com.twu.biblioteca;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.SystemOptions.*;
+import static com.twu.biblioteca.SystemOptionConstants.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
-import static com.twu.biblioteca.MainMenuOptions.*;
-import static com.twu.biblioteca.SystemMessageTypes.*;
+import static com.twu.biblioteca.MainMenuOptionConstants.*;
+import static com.twu.biblioteca.SystemMessageTypeContants.*;
 import static com.twu.biblioteca.UserSystemPositions.*;
-import static com.twu.biblioteca.SystemMessages.*;
+import static com.twu.biblioteca.SystemMessageContants.*;
 
 /**
  * Created by qiyuesong on 16/6/15.
