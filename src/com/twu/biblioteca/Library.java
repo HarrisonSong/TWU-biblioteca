@@ -35,7 +35,7 @@ public class Library {
         String resultString = "";
         while(iterator.hasNext()){
             Book currentBook = iterator.next();
-            resultString = resultString + currentBook.getBookName() + " " + currentBook.getAuthor() + " " + currentBook.getPublishingYear() + "\n";
+            resultString = resultString + currentBook.toString() + "\n";
         }
         System.out.print(resultString);
     }
