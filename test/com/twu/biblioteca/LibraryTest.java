@@ -103,6 +103,12 @@ public class LibraryTest {
     }
 
     @Test
+    public void testFindBook(){
+        assertNotNull(library.findBook(BOOK_ONE_NAME));
+        assertNull(library.findBook("Galaxy War"));
+    }
+
+    @Test
     public void testBookAIsNotAvailableAfterBeingCheckedOut(){
         bookA.checkOut();
         assertNull(library.findBookIfAvailable(BOOK_ONE_NAME));
@@ -126,31 +132,36 @@ public class LibraryTest {
         assertTrue(bookA.getCheckOutStatus());
     }
 
-    @Test void testBorrowUnknownBook(){
+    @Test
+    public void testBorrowUnknownBook(){
         bookA.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("borrow One"));
+        assertEquals(SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One"));
     }
 
-    @Test void testSellBookBAfterBorrowing(){
+    @Test
+    public void testSellBookBAfterBorrowing(){
         bookB.checkOut();
         assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell The Old Man and the Sea"));
         assertTrue(bookB.getCheckOutStatus());
     }
 
-    @Test void testBuyBookBAfterBorrowing(){
+    @Test
+    public void testBuyBookBAfterBorrowing(){
         bookB.checkOut();
         assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy The Old Man and the Sea"));
         assertTrue(bookB.getCheckOutStatus());
     }
 
-    @Test void testReturnBookBAfterBorrowing(){
+    @Test
+    public void testReturnBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("return The Old Man and the Sea"));
+        assertEquals(SystemMessager.SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return The Old Man and the Sea"));
         assertFalse(bookB.getCheckOutStatus());
     }
 
-    @Test void testReturnUnknownBookAftrerBorrowingBookB(){
+    @Test
+    public void testReturnUnknownBookAfterBorrowingBookB(){
         bookB.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("return Galaxy War"));
+        assertEquals(SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Galaxy War"));
     }
 }
