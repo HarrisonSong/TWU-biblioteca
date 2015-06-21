@@ -159,13 +159,4 @@ public class LibraryManagementSystemTest {
         LMS.processBookOperations(SYSTEM_OPTION_BACK);
         assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
     }
-
-    @Test
-    public void testFindBookIfAvailable(){
-        currentCustomer.borrowBook(bookA);
-        assertNull(LMS.findBookIfAvailable(bookA.getBookName().toLowerCase()));
-        assertNotNull(LMS.findBookIfAvailable(bookB.getBookName().toLowerCase()));
-        currentCustomer.borrowBook(bookB);
-        assertNull(LMS.findBookIfAvailable(bookB.getBookName().toLowerCase()));
-    }
 }

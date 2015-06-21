@@ -75,7 +75,7 @@ public class LibraryManagementSystem {
         String operationContent = operation.trim().toLowerCase();
         if(operationContent.startsWith("borrow ")){
             String book = operationContent.replace("borrow ", "");
-            Book targetBook = findBookIfAvailable(book);
+            Book targetBook = this.library.findBookIfAvailable(book);
             if(targetBook != null){
                 currentCustomer.borrowBook(targetBook);
                 SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT);
@@ -100,14 +100,5 @@ public class LibraryManagementSystem {
             SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION);
             SystemMessager.showRemindingMessage();
         }
-    }
-
-    public Book findBookIfAvailable(String bookName) {
-        for (Book book : this.library.getBooksList()) {
-            if (!book.getCheckOutStatus() && book.getBookName().toLowerCase().equals(bookName)) {
-                return book;
-            }
-        }
-        return null;
     }
 }
