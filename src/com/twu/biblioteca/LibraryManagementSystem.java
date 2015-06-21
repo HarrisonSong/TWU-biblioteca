@@ -15,12 +15,12 @@ import static com.twu.biblioteca.UserSystemPositions.SYSTEM_POSITION_MAIN_MENU;
  */
 public class LibraryManagementSystem {
     private Customer currentCustomer;
-    private LinkedList<Book> booksList;
     private MainMenu mainMenu;
+    private Library library;
     private String systemCurrentPosition;
 
     public LibraryManagementSystem(LinkedList<Book> books, LinkedList<String> menuList){
-        this.booksList = books;
+        this.library = new Library(books);
         currentCustomer = new Customer(DEFAULT_USERNAME);
         this.mainMenu = new MainMenu(menuList);
         this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
@@ -55,12 +55,7 @@ public class LibraryManagementSystem {
     }
 
     public void showBooksList() {
-        for(int bookIndex = 0; bookIndex < this.booksList.size(); bookIndex++ ){
-            Book currentBook = this.booksList.get(bookIndex);
-            if(!currentBook.getCheckOutStatus()){
-                System.out.println(currentBook.getBookName() + " " + currentBook.getAuthor() + " " + currentBook.getPublishingYear());
-            }
-        }
+        this.library.showAvailableBooksList();
         SystemMessager.showRemindingMessage();
     }
 
@@ -108,7 +103,7 @@ public class LibraryManagementSystem {
     }
 
     public Book findBookIfAvailable(String bookName) {
-        for (Book book : this.booksList) {
+        for (Book book : this.library.getBooksList()) {
             if (!book.getCheckOutStatus() && book.getBookName().toLowerCase().equals(bookName)) {
                 return book;
             }
