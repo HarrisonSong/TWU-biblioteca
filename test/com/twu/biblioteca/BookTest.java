@@ -86,4 +86,9 @@ public class BookTest {
     public void testBookADoesNotEqualToBookB(){
         assertNotEquals(bookA, bookB);
     }
+
+    @Test
+    public void testBookAToString() {
+        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910", bookA.toString());
+    }
 }
