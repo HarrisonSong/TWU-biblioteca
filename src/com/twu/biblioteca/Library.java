@@ -69,7 +69,6 @@ public class Library {
             }else {
                 resultMessageType = SystemMessageType.UNSUCCESSFUL_CHECKOUT;
             }
-            SystemMessager.showRemindingMessage();
         }else if(operation.startsWith("return ")){
             String bookName = operation.replace("return ", "");
             Book targetBook = this.findBook(bookName);

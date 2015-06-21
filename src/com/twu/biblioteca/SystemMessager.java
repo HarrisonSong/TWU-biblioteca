@@ -30,17 +30,14 @@ public class SystemMessager {
                 messageForResponse = INVALID_MENU_OPTION_MESSAGE;
                 break;
             }
-
             case SUCCESSFUL_CHECKOUT:{
                 messageForResponse = SUCCESSFUL_CHECKOUT_MESSAGE;
                 break;
             }
-
             case UNSUCCESSFUL_CHECKOUT:{
                 messageForResponse = UNSUCCESSFUL_CHECKOUT_MESSAGE;
                 break;
             }
-
             case SUCCESSFUL_RETURN:{
                 messageForResponse = SUCCESSFUL_RETURN_MESSAGE;
                 break;
@@ -50,7 +47,6 @@ public class SystemMessager {
                 messageForResponse = UNSUCCESSFUL_RETURN_MESSAGE;
                 break;
             }
-
             case INVALID_BOOK_OPTION:{
                 messageForResponse = INVALID_BOOK_OPTION_MESSAGE;
                 break;
