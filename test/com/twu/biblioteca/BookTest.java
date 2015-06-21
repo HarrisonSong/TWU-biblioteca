@@ -89,6 +89,6 @@ public class BookTest {
 
     @Test
     public void testBookAToString() {
-        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910", bookA.toString());
+        assertEquals("Hamlet Shakespeare 1972", bookA.toString());
     }
 }

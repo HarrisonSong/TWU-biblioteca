@@ -39,4 +39,9 @@ public class Book {
     public void checkIn() {
         this.checkOutStatus = false;
     }
+
+    @Override
+    public String toString(){
+        return getBookName() + " " + getAuthor() + " " + getPublishingYear();
+    }
 }
