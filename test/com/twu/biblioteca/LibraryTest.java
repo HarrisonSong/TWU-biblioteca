@@ -78,4 +78,14 @@ public class LibraryTest {
         bookC.checkIn();
         assertEquals(5, library.getAvailableBooksList().size());
     }
+
+    @Test
+    public void testShowAvailableBooksList(){
+        library.showAvailableBooksList();
+        assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
+                "The Old Man and the Sea Ernest Hemingway 1990\n" +
+                "Programming Pearl Jon Bentley 2003\n" +
+                "Hamlet Shakespeare 1972\n" +
+                "Gone with the wind Margaret Mitchell 1980\n", outStream.toString());
+    }
 }
