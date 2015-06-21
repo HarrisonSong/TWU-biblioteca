@@ -91,4 +91,9 @@ public class BookTest {
     public void testBookAToString() {
         assertEquals("Hamlet Shakespeare 1972", bookA.toString());
     }
+
+    @Test
+    public void testBookBToString() {
+        assertEquals("Gone with the wind Margaret Mitchell 1980", bookB.toString());
+    }
 }
