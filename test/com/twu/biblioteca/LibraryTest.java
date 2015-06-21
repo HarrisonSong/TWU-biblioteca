@@ -107,4 +107,50 @@ public class LibraryTest {
         bookA.checkOut();
         assertNull(library.findBookIfAvailable(BOOK_ONE_NAME));
     }
+
+    @Test
+    public void testBuyBookA(){
+        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell One Hundred Years of Solitude"));
+        assertFalse(bookA.getCheckOutStatus());
+    }
+
+    @Test
+    public void testSellBookA(){
+        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy One Hundred Years of Solitude"));
+        assertFalse(bookA.getCheckOutStatus());
+    }
+
+    @Test
+    public void testBorrowBookA(){
+        assertEquals(SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One Hundred Years of Solitude"));
+        assertTrue(bookA.getCheckOutStatus());
+    }
+
+    @Test void testBorrowUnknownBook(){
+        bookA.checkOut();
+        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("borrow One"));
+    }
+
+    @Test void testSellBookBAfterBorrowing(){
+        bookB.checkOut();
+        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell The Old Man and the Sea"));
+        assertTrue(bookB.getCheckOutStatus());
+    }
+
+    @Test void testBuyBookBAfterBorrowing(){
+        bookB.checkOut();
+        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy The Old Man and the Sea"));
+        assertTrue(bookB.getCheckOutStatus());
+    }
+
+    @Test void testReturnBookBAfterBorrowing(){
+        bookB.checkOut();
+        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("return The Old Man and the Sea"));
+        assertFalse(bookB.getCheckOutStatus());
+    }
+
+    @Test void testReturnUnknownBookAftrerBorrowingBookB(){
+        bookB.checkOut();
+        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("return Galaxy War"));
+    }
 }

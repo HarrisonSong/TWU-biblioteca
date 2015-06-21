@@ -48,4 +48,8 @@ public class Library {
         }
         return null;
     }
+
+    public SystemMessager.SystemMessageType processBooksOperations(String operation){
+        return SystemMessager.SystemMessageType.INVALID_BOOK_OPTION;
+    }
 }
