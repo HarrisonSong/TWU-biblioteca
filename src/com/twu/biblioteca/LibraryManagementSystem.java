@@ -68,7 +68,7 @@ public class LibraryManagementSystem {
                 return;
             }
         }
-        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_MENU_OPTION);
+        SystemMessager.showResponseMessage(SystemMessageType.INVALID_MENU_OPTION);
     }
 
     public void processBookOperations(String operation){
@@ -78,9 +78,9 @@ public class LibraryManagementSystem {
             Book targetBook = this.library.findBookIfAvailable(book);
             if(targetBook != null){
                 currentCustomer.borrowBook(targetBook);
-                SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT);
+                SystemMessager.showResponseMessage(SystemMessageType.SUCCESSFUL_CHECKOUT);
             }else {
-                SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT);
+                SystemMessager.showResponseMessage(SystemMessageType.UNSUCCESSFUL_CHECKOUT);
             }
             SystemMessager.showRemindingMessage();
         }else if(operationContent.startsWith("return ")){
@@ -88,16 +88,16 @@ public class LibraryManagementSystem {
             Book targetBook = currentCustomer.findBookIfAvailableToReturn(book);
             if(targetBook != null){
                 currentCustomer.returnBook(targetBook);
-                SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_RETURN);
+                SystemMessager.showResponseMessage(SystemMessageType.SUCCESSFUL_RETURN);
             }else{
-                SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN);
+                SystemMessager.showResponseMessage(SystemMessageType.UNSUCCESSFUL_RETURN);
             }
             SystemMessager.showRemindingMessage();
         }else if(operationContent.equals(SYSTEM_OPTION_BACK)){
             this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
         }else{
-            SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION);
+            SystemMessager.showResponseMessage(SystemMessageType.INVALID_BOOK_OPTION);
             SystemMessager.showRemindingMessage();
         }
     }

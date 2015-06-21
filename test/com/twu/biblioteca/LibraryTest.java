@@ -116,52 +116,52 @@ public class LibraryTest {
 
     @Test
     public void testBuyBookA(){
-        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell One Hundred Years of Solitude"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell One Hundred Years of Solitude"));
         assertFalse(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testSellBookA(){
-        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy One Hundred Years of Solitude"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy One Hundred Years of Solitude"));
         assertFalse(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowBookA(){
-        assertEquals(SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One Hundred Years of Solitude"));
+        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One Hundred Years of Solitude"));
         assertTrue(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowUnknownBook(){
         bookA.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One"));
+        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One"));
     }
 
     @Test
     public void testSellBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell The Old Man and the Sea"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell The Old Man and the Sea"));
         assertTrue(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testBuyBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy The Old Man and the Sea"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy The Old Man and the Sea"));
         assertTrue(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return The Old Man and the Sea"));
+        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return The Old Man and the Sea"));
         assertFalse(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnUnknownBookAfterBorrowingBookB(){
         bookB.checkOut();
-        assertEquals(SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Galaxy War"));
+        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Galaxy War"));
     }
 }

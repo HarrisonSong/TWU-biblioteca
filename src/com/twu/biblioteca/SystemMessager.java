@@ -5,15 +5,6 @@ package com.twu.biblioteca;
  */
 public class SystemMessager {
 
-    public enum  SystemMessageType {
-        INVALID_MENU_OPTION,
-        SUCCESSFUL_CHECKOUT,
-        UNSUCCESSFUL_CHECKOUT,
-        SUCCESSFUL_RETURN,
-        UNSUCCESSFUL_RETURN,
-        INVALID_BOOK_OPTION
-    }
-
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca library management system.";
     public static final String INVALID_MENU_OPTION_MESSAGE = "Select a valid option!";
     public static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the book.";

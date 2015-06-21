@@ -39,37 +39,37 @@ public class SystemMessagerTest {
 
     @Test
     public void testShowInvalidMenuOptionMessage(){
-        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_MENU_OPTION);
+        SystemMessager.showResponseMessage(SystemMessageType.INVALID_MENU_OPTION);
         assertEquals(SystemMessager.INVALID_MENU_OPTION_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulCheckOutMessage(){
-        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT);
+        SystemMessager.showResponseMessage(SystemMessageType.SUCCESSFUL_CHECKOUT);
         assertEquals(SystemMessager.SUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulCheckOutMessage(){
-        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT);
+        SystemMessager.showResponseMessage(SystemMessageType.UNSUCCESSFUL_CHECKOUT);
         assertEquals(SystemMessager.UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowSuccessfulReturnMessage(){
-        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.SUCCESSFUL_RETURN);
+        SystemMessager.showResponseMessage(SystemMessageType.SUCCESSFUL_RETURN);
         assertEquals(SystemMessager.SUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowUnsuccessfulReturnMessage(){
-        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN);
+        SystemMessager.showResponseMessage(SystemMessageType.UNSUCCESSFUL_RETURN);
         assertEquals(SystemMessager.UNSUCCESSFUL_RETURN_MESSAGE + "\n", outStream.toString());
     }
 
     @Test
     public void testShowInvalidBookOptionMessage(){
-        SystemMessager.showResponseMessage(SystemMessager.SystemMessageType.INVALID_BOOK_OPTION);
+        SystemMessager.showResponseMessage(SystemMessageType.INVALID_BOOK_OPTION);
         assertEquals(SystemMessager.INVALID_BOOK_OPTION_MESSAGE + "\n", outStream.toString());
     }
 }

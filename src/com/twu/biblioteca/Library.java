@@ -58,16 +58,16 @@ public class Library {
         return null;
     }
 
-    public SystemMessager.SystemMessageType processBooksOperations(String operation){
-        SystemMessager.SystemMessageType resultMessageType = SystemMessager.SystemMessageType.INVALID_BOOK_OPTION;
+    public SystemMessageType processBooksOperations(String operation){
+        SystemMessageType resultMessageType = SystemMessageType.INVALID_BOOK_OPTION;
         if(operation.startsWith("borrow ")){
             String bookName = operation.replace("borrow ", "");
             Book targetBook = this.findBookIfAvailable(bookName);
             if(targetBook != null){
                 targetBook.checkOut();
-                resultMessageType = SystemMessager.SystemMessageType.SUCCESSFUL_CHECKOUT;
+                resultMessageType = SystemMessageType.SUCCESSFUL_CHECKOUT;
             }else {
-                resultMessageType = SystemMessager.SystemMessageType.UNSUCCESSFUL_CHECKOUT;
+                resultMessageType = SystemMessageType.UNSUCCESSFUL_CHECKOUT;
             }
             SystemMessager.showRemindingMessage();
         }else if(operation.startsWith("return ")){
@@ -75,9 +75,9 @@ public class Library {
             Book targetBook = this.findBook(bookName);
             if(targetBook != null && targetBook.getCheckOutStatus()) {
                 targetBook.checkIn();
-                resultMessageType = SystemMessager.SystemMessageType.SUCCESSFUL_RETURN;
+                resultMessageType = SystemMessageType.SUCCESSFUL_RETURN;
             }else {
-                resultMessageType = SystemMessager.SystemMessageType.UNSUCCESSFUL_RETURN;
+                resultMessageType = SystemMessageType.UNSUCCESSFUL_RETURN;
             }
         }
         return resultMessageType;
