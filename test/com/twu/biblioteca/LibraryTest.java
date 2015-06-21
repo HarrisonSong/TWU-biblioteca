@@ -10,6 +10,7 @@ import java.util.LinkedList;
 
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
 import static org.junit.Assert.*;
+import static com.twu.biblioteca.PredefinedUserDetails.*;
 
 /**
  * Created by qiyuesong on 18/6/15.
@@ -18,6 +19,7 @@ public class LibraryTest {
     private Library library;
     private  Book bookA, bookB, bookC, bookD, bookE;
     private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    private Customer customer;
 
     @Before
     public void setup(){
@@ -37,6 +39,7 @@ public class LibraryTest {
         booksList.add(bookE);
 
         library = new Library(booksList);
+        customer = new Customer(DEFAULT_USERNAME);
     }
 
     @After
@@ -116,52 +119,52 @@ public class LibraryTest {
 
     @Test
     public void testBuyBookA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell One Hundred Years of Solitude"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy One Hundred Years of Solitude", customer));
         assertFalse(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testSellBookA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy One Hundred Years of Solitude"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell One Hundred Years of Solitude",customer));
         assertFalse(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowBookA(){
-        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One Hundred Years of Solitude"));
+        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One Hundred Years of Solitude", customer));
         assertTrue(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowUnknownBook(){
         bookA.checkOut();
-        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One"));
+        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One", customer));
     }
 
     @Test
     public void testSellBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell The Old Man and the Sea"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell The Old Man and the Sea", customer));
         assertTrue(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testBuyBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy The Old Man and the Sea"));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy The Old Man and the Sea", customer));
         assertTrue(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnBookBAfterBorrowing(){
-        bookB.checkOut();
-        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return The Old Man and the Sea"));
+        customer.borrowBook(bookB);
+        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return The Old Man and the Sea", customer));
         assertFalse(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnUnknownBookAfterBorrowingBookB(){
-        bookB.checkOut();
-        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Galaxy War"));
+        customer.borrowBook(bookB);
+        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Galaxy War",customer));
     }
 }

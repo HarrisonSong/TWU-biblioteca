@@ -58,22 +58,22 @@ public class Library {
         return null;
     }
 
-    public SystemMessageType processBooksOperations(String operation){
+    public SystemMessageType processBooksOperations(String operation, Customer customer){
         SystemMessageType resultMessageType = SystemMessageType.INVALID_BOOK_OPTION;
         if(operation.startsWith("borrow ")){
             String bookName = operation.replace("borrow ", "");
             Book targetBook = this.findBookIfAvailable(bookName);
             if(targetBook != null){
-                targetBook.checkOut();
+                customer.borrowBook(targetBook);
                 resultMessageType = SystemMessageType.SUCCESSFUL_CHECKOUT;
             }else {
                 resultMessageType = SystemMessageType.UNSUCCESSFUL_CHECKOUT;
             }
         }else if(operation.startsWith("return ")){
             String bookName = operation.replace("return ", "");
-            Book targetBook = this.findBook(bookName);
-            if(targetBook != null && targetBook.getCheckOutStatus()) {
-                targetBook.checkIn();
+            Book targetBook = customer.findBookIfAvailableToReturn(bookName);
+            if(targetBook != null) {
+                customer.returnBook(targetBook);
                 resultMessageType = SystemMessageType.SUCCESSFUL_RETURN;
             }else {
                 resultMessageType = SystemMessageType.UNSUCCESSFUL_RETURN;

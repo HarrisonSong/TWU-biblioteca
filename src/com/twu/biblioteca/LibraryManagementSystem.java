@@ -73,31 +73,11 @@ public class LibraryManagementSystem {
 
     public void processBookOperations(String operation){
         String operationContent = operation.trim().toLowerCase();
-        if(operationContent.startsWith("borrow ")){
-            String book = operationContent.replace("borrow ", "");
-            Book targetBook = this.library.findBookIfAvailable(book);
-            if(targetBook != null){
-                currentCustomer.borrowBook(targetBook);
-                SystemMessager.showResponseMessage(SystemMessageType.SUCCESSFUL_CHECKOUT);
-            }else {
-                SystemMessager.showResponseMessage(SystemMessageType.UNSUCCESSFUL_CHECKOUT);
-            }
-            SystemMessager.showRemindingMessage();
-        }else if(operationContent.startsWith("return ")){
-            String book = operationContent.replace("return ", "");
-            Book targetBook = currentCustomer.findBookIfAvailableToReturn(book);
-            if(targetBook != null){
-                currentCustomer.returnBook(targetBook);
-                SystemMessager.showResponseMessage(SystemMessageType.SUCCESSFUL_RETURN);
-            }else{
-                SystemMessager.showResponseMessage(SystemMessageType.UNSUCCESSFUL_RETURN);
-            }
-            SystemMessager.showRemindingMessage();
-        }else if(operationContent.equals(SYSTEM_OPTION_BACK)){
+        if(operationContent.equals(SYSTEM_OPTION_BACK)){
             this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
         }else{
-            SystemMessager.showResponseMessage(SystemMessageType.INVALID_BOOK_OPTION);
+            SystemMessager.showResponseMessage(this.library.processBooksOperations(operationContent, currentCustomer));
             SystemMessager.showRemindingMessage();
         }
     }
