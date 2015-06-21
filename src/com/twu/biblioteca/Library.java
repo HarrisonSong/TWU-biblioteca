@@ -30,6 +30,13 @@ public class Library {
     }
 
     public void showAvailableBooksList(){
-        
+        LinkedList<Book> availableBooksList = getAvailableBooksList();
+        Iterator<Book> iterator = availableBooksList.iterator();
+        String resultString = "";
+        while(iterator.hasNext()){
+            Book currentBook = iterator.next();
+            resultString = resultString + currentBook.getBookName() + " " + currentBook.getAuthor() + " " + currentBook.getPublishingYear() + "\n";
+        }
+        System.out.print(resultString);
     }
 }
