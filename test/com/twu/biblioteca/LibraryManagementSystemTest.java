@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
@@ -21,6 +22,7 @@ import static com.twu.biblioteca.SystemOptionConstants.*;
 public class LibraryManagementSystemTest {
     private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errStream = new ByteArrayOutputStream();
+    private ByteArrayInputStream inStream;
     private LibraryManagementSystem LMS;
     private  Book bookA, bookB, bookC, bookD, bookE;
     private Customer currentCustomer;
@@ -158,5 +160,16 @@ public class LibraryManagementSystemTest {
 
         LMS.processBookOperations(SYSTEM_OPTION_BACK);
         assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
+    }
+
+    @Test
+    public void testShowGoodByeMessageAfterQuit(){
+        inStream = new ByteArrayInputStream("quit".getBytes());
+        System.setIn(inStream);
+        LMS.startSystem();
+        assertEquals("Welcome to Biblioteca library management system.\n" +
+                "Main Menu\n" +
+                "List Books\n" +
+                "Please type in the operation you want to do: Thank you for using our system. Good bye!\n", outStream.toString());
     }
 }

@@ -39,6 +39,7 @@ public class LibraryManagementSystem {
             }
             operation = sc.nextLine();
         }
+        SystemMessager.showGoodByeMessage();
     }
 
     public Customer getCurrentCustomer() {

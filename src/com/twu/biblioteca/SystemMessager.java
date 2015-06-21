@@ -13,6 +13,7 @@ public class SystemMessager {
     public static final String UNSUCCESSFUL_RETURN_MESSAGE = "That is not a valid book to return.";
     public static final String INVALID_BOOK_OPTION_MESSAGE = "Your operation is not available.";
     public static final String REMINDING_MESSAGE = "Please type in the operation you want to do: ";
+    public static final String GOODBYE_MESSAGE = "Thank you for using our system. Good bye!";
 
 
     public static void showWelcomeMessage(){
@@ -55,5 +56,9 @@ public class SystemMessager {
                 break;
         }
         System.out.println(messageForResponse);
+    }
+
+    public static void showGoodByeMessage(){
+        System.out.println(GOODBYE_MESSAGE);
     }
 }
