@@ -40,13 +40,11 @@ public class LibraryOperationParserTest {
     public void testParsingBuyBookHamlet(){
         BookOperation operation = LibraryOperationParser.parseOperation("buy Hamlet");
         assertEquals(LibraryOptionType.LIBRARY_OPTION_UNKNOWN, operation.getOperation());
-        assertEquals("hamlet", operation.getTarget());
     }
 
     @Test
     public void testParsingBuyBookGoneWithTheWind(){
         BookOperation operation = LibraryOperationParser.parseOperation("buy Gone with the wind");
         assertEquals(LibraryOptionType.LIBRARY_OPTION_UNKNOWN, operation.getOperation());
-        assertEquals("gone with the wind", operation.getTarget());
     }
 }
