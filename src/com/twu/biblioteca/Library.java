@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -13,10 +14,18 @@ public class Library {
     }
 
     public LinkedList<Book> getBooksList() {
-        return null;
+        return this.booksList;
     }
 
     public LinkedList<Book> getAvailableBooksList(){
-        return null;
+        LinkedList<Book> availableBooksList = new LinkedList<Book>();
+        Iterator<Book> iterator = this.booksList.iterator();
+        while(iterator.hasNext()){
+            Book currentBook = iterator.next();
+            if(!currentBook.getCheckOutStatus()){
+                availableBooksList.addLast(currentBook);
+            }
+        }
+        return availableBooksList;
     }
 }
