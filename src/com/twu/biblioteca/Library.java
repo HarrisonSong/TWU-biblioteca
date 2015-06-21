@@ -39,4 +39,8 @@ public class Library {
         }
         System.out.print(resultString);
     }
+
+    public Book findBookIfAvailable(String bookName) {
+        return null;
+    }
 }

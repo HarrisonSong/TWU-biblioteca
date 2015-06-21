@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import java.util.LinkedList;
 
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 18/6/15.
@@ -94,5 +94,17 @@ public class LibraryTest {
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Programming Pearl Jon Bentley 2003\n" +
                 "Gone with the wind Margaret Mitchell 1980\n", outStream.toString());
+    }
+
+    @Test
+    public void testBookAIsAvailable(){
+        assertNotNull(library.findBookIfAvailable(BOOK_ONE_NAME));
+        assertTrue(library.findBookIfAvailable(BOOK_ONE_NAME) instanceof Book);
+    }
+
+    @Test
+    public void testBookAIsNotAvailableAfterBeingCheckedOut(){
+        bookA.checkOut();
+        assertNull(library.findBookIfAvailable(BOOK_ONE_NAME));
     }
 }
