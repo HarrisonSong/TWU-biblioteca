@@ -40,6 +40,10 @@ public class Customer {
         return isLoggedIn;
     }
 
+    public void login(){
+        isLoggedIn = true;
+    }
+
     public LinkedList<LibraryItem> getBorrowedBooksList() {
         return this.borrowedItemsList;
     }

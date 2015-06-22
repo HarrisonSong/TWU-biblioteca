@@ -54,6 +54,13 @@ public class CustomerTest {
     }
 
     @Test
+    public void testCustomerLogin(){
+        assertFalse(customerA.isLoggedIn());
+        customerA.login();
+        assertTrue(customerA.isLoggedIn());
+    }
+
+    @Test
     public void testCustomerAInitialBorrowedBooksListIsEmpty() {
         assertEquals(0, customerA.getBorrowedBooksList().size());
     }
