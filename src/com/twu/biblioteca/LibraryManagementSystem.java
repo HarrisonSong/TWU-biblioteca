@@ -50,7 +50,11 @@ public class LibraryManagementSystem {
     }
 
     public void showMainMenu() {
-        this.mainMenu.showMainMenu();
+        if(currentCustomer == null){
+            this.mainMenu.showMainMenu(false);
+        }else{
+            this.mainMenu.showMainMenu(true);
+        }
         SystemMessager.showRemindingMessage();
     }
 
@@ -65,7 +69,6 @@ public class LibraryManagementSystem {
     }
 
     public void showCustomerInformation(){
-
     }
 
     public void processMainMenuOperations(String operation){

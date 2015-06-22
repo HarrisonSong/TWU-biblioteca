@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import static com.twu.biblioteca.MainMenuOptionConstants.*;
+
 /**
  * Created by qiyuesong on 18/6/15.
  */
@@ -18,11 +20,14 @@ public class MainMenu {
         return this.menuList;
     }
 
-    public void showMainMenu(){
+    public void showMainMenu(boolean shouldShowUserInfoOption){
         Iterator<String> iterator = this.menuList.iterator();
         String menuContent = MENU_TITLE + "\n";
         while(iterator.hasNext()){
-            menuContent += iterator.next() + "\n";
+            String currentOption = iterator.next();
+            if(!currentOption.equals(MAIN_MENU_SHOW_CUSTOMER_INFORMATION_OPTION) || shouldShowUserInfoOption){
+                menuContent += currentOption + "\n";
+            }
         }
         System.out.print(menuContent);
     }

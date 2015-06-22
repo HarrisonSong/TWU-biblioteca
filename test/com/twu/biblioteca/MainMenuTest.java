@@ -42,7 +42,11 @@ public class MainMenuTest {
 
     @Test
     public void testShowMenu(){
-        menu.showMainMenu();
+        menu.showMainMenu(false);
+        assertEquals("Main Menu\nList Books\nList Movies\n", outStream.toString());
+        outStream.reset();
+
+        menu.showMainMenu(true);
         assertEquals("Main Menu\nList Books\nList Movies\n", outStream.toString());
     }
 
