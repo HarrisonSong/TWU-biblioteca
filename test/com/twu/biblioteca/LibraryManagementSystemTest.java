@@ -278,4 +278,25 @@ public class LibraryManagementSystemTest {
         assertEquals("Please Login First\n" +
                 "library number: password: Login successfully! Hello Li Lei.\n",outStream.toString());
     }
+
+    @Test
+    public void testShowMainMenu(){
+        LMS.showMainMenu();
+        assertEquals("Main Menu\n" +
+                "List Books\n" +
+                "List Movies\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
+        outStream.reset();
+
+        String simulatedUserLogin = CUSTOMER_ONE_LIBRARY_NUMBER + System.getProperty("line.separator")
+                + CUSTOMER_ONE_PASSWORD + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
+        outStream.reset();
+        LMS.showMainMenu();
+        assertEquals("Main Menu\n" +
+                "List Books\n" +
+                "List Movies\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
+    }
 }
