@@ -19,7 +19,7 @@ public class LibraryManagementSystem {
 
     public LibraryManagementSystem(LinkedList<LibraryItem> items, LinkedList<String> menuList){
         this.library = new Library(items);
-        currentCustomer = new Customer(DEFAULT_USERNAME);
+        currentCustomer = new Customer(CUSTOMER_ONE_NAME, CUSTOMER_ONE_EMAIL, CUSTOMER_ONE_PHONENUMBER);
         this.mainMenu = new MainMenu(menuList);
         this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
     }

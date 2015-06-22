@@ -71,7 +71,7 @@ public class LibraryManagementSystemTest {
 
     @Test
     public void testCurrentCustomer() {
-        assertEquals(DEFAULT_USERNAME, currentCustomer.getCustomerName());
+        assertEquals(CUSTOMER_ONE_NAME, currentCustomer.getCustomerName());
     }
 
     @Test

@@ -50,7 +50,7 @@ public class LibraryTest {
         itemsList.add(movieD);
 
         library = new Library(itemsList);
-        customer = new Customer(DEFAULT_USERNAME);
+        customer = new Customer(CUSTOMER_ONE_NAME, CUSTOMER_TWO_EMAIL, CUSTOMER_ONE_PHONENUMBER);
     }
 
     @After

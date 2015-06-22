@@ -16,8 +16,8 @@ public class CustomerTest {
 
     @Before
     public void setup() {
-        customerA = new Customer(CUSTOMER_ONE_NAME);
-        customerB = new Customer(CUSTOMER_TWO_NAME);
+        customerA = new Customer(CUSTOMER_ONE_NAME, CUSTOMER_ONE_EMAIL, CUSTOMER_ONE_PHONENUMBER);
+        customerB = new Customer(CUSTOMER_TWO_NAME, CUSTOMER_TWO_EMAIL, CUSTOMER_TWO_PHONENUMBER);
         bookA = new Book(BOOK_ONE_NAME, BOOK_ONE_AUTHOR, BOOK_ONE_PUBLISHING_YEAR);
         bookB = new Book(BOOK_TWO_NAME, BOOK_TWO_AUTHOR, BOOK_TWO_PUBLISHING_YEAR);
         bookC = new Book(BOOK_THREE_NAME, BOOK_THREE_AUTHOR, BOOK_THREE_PUBLISHING_YEAR);
@@ -31,6 +31,26 @@ public class CustomerTest {
     @Test
     public void testCustomerBName() {
         assertEquals(CUSTOMER_TWO_NAME, customerB.getCustomerName());
+    }
+
+    @Test
+    public void testCustomerAEmail() {
+        assertEquals(CUSTOMER_ONE_EMAIL, customerA.getEmail());
+    }
+
+    @Test
+    public void testCustomerBEmail() {
+        assertEquals(CUSTOMER_TWO_EMAIL, customerB.getEmail());
+    }
+
+    @Test
+    public void testCustomerAPhoneNumber() {
+        assertEquals(CUSTOMER_ONE_PHONENUMBER, customerA.getPhoneNumber());
+    }
+
+    @Test
+    public void testCustomerBPhoneNumber() {
+        assertEquals(CUSTOMER_TWO_PHONENUMBER, customerB.getPhoneNumber());
     }
 
     @Test

@@ -7,19 +7,37 @@ import java.util.LinkedList;
  */
 public class Customer {
     private String customerName;
+    private String email;
+    private String phoneNumber;
     private LinkedList<LibraryItem> borrowedItemsList;
+    private boolean isLoggedIn;
 
-    public Customer(String name) {
-       this(name, new LinkedList<LibraryItem>());
+    public Customer(String name, String email, String phoneNumber) {
+       this(name, email, phoneNumber,  new LinkedList<LibraryItem>());
     }
 
-    public Customer(String name, LinkedList<LibraryItem> booksList) {
+    public Customer(String name, String email, String phoneNumber, LinkedList<LibraryItem> booksList) {
         this.customerName = name;
         this.borrowedItemsList = booksList;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.isLoggedIn = false;
     }
 
     public String getCustomerName() {
         return this.customerName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
     }
 
     public LinkedList<LibraryItem> getBorrowedBooksList() {
