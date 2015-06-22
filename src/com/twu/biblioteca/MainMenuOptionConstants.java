@@ -6,4 +6,5 @@ package com.twu.biblioteca;
 public class MainMenuOptionConstants {
 
     public static final String MAIN_MENU_LIST_BOOKS_OPTION = "List Books";
+    public static final String MAIN_MENU_LIST_MOVIES_OPTION = "List Movies";
 }

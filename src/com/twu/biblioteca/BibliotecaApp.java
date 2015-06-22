@@ -22,6 +22,7 @@ public class BibliotecaApp {
 
         LinkedList<String> menuList = new LinkedList<String>();
         menuList.add(MAIN_MENU_LIST_BOOKS_OPTION);
+        menuList.add(MAIN_MENU_LIST_MOVIES_OPTION);
 
         LMS = new LibraryManagementSystem(booksList, menuList);
     }

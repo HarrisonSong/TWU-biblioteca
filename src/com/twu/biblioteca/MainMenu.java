@@ -26,4 +26,14 @@ public class MainMenu {
         }
         System.out.print(menuContent);
     }
+
+    public String checkOperation(String operation){
+        String operationContent = operation.trim().toLowerCase();
+        for(String option : this.menuList){
+            if(option.toLowerCase().equals(operationContent)){
+                return option;
+            }
+        }
+        return null;
+    }
 }
