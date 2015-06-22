@@ -19,12 +19,12 @@ public class MovieTest {
 
     @Test
     public void testIfMovieANameIsCorrect() {
-        assertEquals(MOVIE_THREE_NAME, movieA.getMovieName());
+        assertEquals(MOVIE_THREE_NAME, movieA.getName());
     }
 
     @Test
     public void testIfMovieBNameIsCorrect() {
-        assertEquals(MOVIE_FOUR_NAME, movieB.getMovieName());
+        assertEquals(MOVIE_FOUR_NAME, movieB.getName());
     }
 
     @Test

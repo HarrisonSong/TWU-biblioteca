@@ -24,6 +24,6 @@ public class Book extends LibraryItem {
 
     @Override
     public String toString(){
-        return getName() + " " + getAuthor() + " " + getPublishingYear();
+        return this.name + " " + this.author + " " + this.publishingYear;
     }
 }

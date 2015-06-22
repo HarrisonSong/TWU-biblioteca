@@ -3,24 +3,18 @@ package com.twu.biblioteca;
 /**
  * Created by qiyuesong on 21/6/15.
  */
-public class Movie {
-    private String movieName;
+public class Movie extends LibraryItem {
     private int year;
     private String director;
     private int rate;
-    private boolean checkOutStatus;
 
-    public Movie(String name, int year, String director, int rate) {
-        this.movieName = name;
+    public Movie(String movie, int year, String director, int rate) {
+        super(movie);
         this.year = year;
         this.director = director;
         this.rate = rate;
-        this.checkOutStatus = false;
     }
 
-    public String getMovieName() {
-        return this.movieName;
-    }
 
     public int getMovieYear() {
         return this.year;
@@ -34,20 +28,8 @@ public class Movie {
         return this.rate;
     }
 
-    public boolean getCheckOutStatus() {
-        return this.checkOutStatus;
-    }
-
-    public void checkOut() {
-        this.checkOutStatus = true;
-    }
-
-    public void checkIn() {
-        this.checkOutStatus = false;
-    }
-
     @Override
     public String toString(){
-        return this.movieName + " " + this.year + " " + this.director + " " + this.rate;
+        return this.name + " " + this.year + " " + this.director + " " + this.rate;
     }
 }
