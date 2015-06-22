@@ -25,6 +25,7 @@ public class MainMenuTest {
 
         LinkedList<String> menuList = new LinkedList<String>();
         menuList.add(MAIN_MENU_LIST_BOOKS_OPTION);
+        menuList.add(MAIN_MENU_LIST_MOVIES_OPTION);
         menu = new MainMenu(menuList);
     }
 
@@ -35,13 +36,13 @@ public class MainMenuTest {
 
     @Test
     public void testMenuList(){
-        assertEquals(1, menu.getMenuList().size());
+        assertEquals(2, menu.getMenuList().size());
         assertTrue(menu.getMenuList().contains(MAIN_MENU_LIST_BOOKS_OPTION));
     }
 
     @Test
     public void testShowMenu(){
         menu.showMainMenu();
-        assertEquals("Main Menu\nList Books\n", outStream.toString());
+        assertEquals("Main Menu\nList Books\nList Movies\n", outStream.toString());
     }
 }
