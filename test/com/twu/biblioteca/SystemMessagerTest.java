@@ -69,7 +69,7 @@ public class SystemMessagerTest {
 
     @Test
     public void testShowInvalidBookOptionMessage(){
-        SystemMessager.showResponseMessage(SystemMessageType.INVALID_BOOK_OPTION);
+        SystemMessager.showResponseMessage(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION);
         assertEquals(SystemMessager.INVALID_BOOK_OPTION_MESSAGE + "\n", outStream.toString());
     }
 }

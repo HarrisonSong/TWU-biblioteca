@@ -230,13 +230,13 @@ public class LibraryTest {
 
     @Test
     public void testBuyBookA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy One Hundred Years of Solitude", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("buy One Hundred Years of Solitude", customer));
         assertFalse(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testSellBookA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell One Hundred Years of Solitude", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("sell One Hundred Years of Solitude", customer));
         assertFalse(bookA.getCheckOutStatus());
     }
 
@@ -255,14 +255,14 @@ public class LibraryTest {
     @Test
     public void testSellBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell The Old Man and the Sea", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("sell The Old Man and the Sea", customer));
         assertTrue(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testBuyBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy The Old Man and the Sea", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("buy The Old Man and the Sea", customer));
         assertTrue(bookB.getCheckOutStatus());
     }
 
@@ -281,13 +281,13 @@ public class LibraryTest {
 
     @Test
     public void testBuyMovieA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy Star War", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("buy Star War", customer));
         assertFalse(movieA.getCheckOutStatus());
     }
 
     @Test
     public void testSellMovieA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell Star War", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("sell Star War", customer));
         assertFalse(movieA.getCheckOutStatus());
     }
 
@@ -306,14 +306,14 @@ public class LibraryTest {
     @Test
     public void testSellMovieBAfterBorrowing(){
         movieB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell Jurassic Park", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("sell Jurassic Park", customer));
         assertTrue(movieB.getCheckOutStatus());
     }
 
     @Test
     public void testBuyMovieBAfterBorrowing(){
         movieB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy Jurassic Park", customer));
+        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("buy Jurassic Park", customer));
         assertTrue(movieB.getCheckOutStatus());
     }
 

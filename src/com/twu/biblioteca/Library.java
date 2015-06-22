@@ -118,7 +118,7 @@ public class Library {
     }
 
     public SystemMessageType processLibraryItemsOperations(String operation, Customer customer){
-        SystemMessageType resultMessageType = SystemMessageType.INVALID_BOOK_OPTION;
+        SystemMessageType resultMessageType = SystemMessageType.INVALID_LIBRARY_ITEM_OPTION;
         LibraryItemOperation libraryItemOperation = LibraryOperationParser.parseOperation(operation);
         switch (libraryItemOperation.getOperation()){
             case LIBRARY_OPTION_BORROW:{

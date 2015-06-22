@@ -48,7 +48,7 @@ public class SystemMessager {
                 messageForResponse = UNSUCCESSFUL_RETURN_MESSAGE;
                 break;
             }
-            case INVALID_BOOK_OPTION:{
+            case INVALID_LIBRARY_ITEM_OPTION:{
                 messageForResponse = INVALID_BOOK_OPTION_MESSAGE;
                 break;
             }
