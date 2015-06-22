@@ -70,6 +70,7 @@ public class LibraryManagementSystem {
 
     public void showCustomerInformation(){
         System.out.println(currentCustomer.toString());
+        SystemMessager.showRemindingMessage();
     }
 
     public void processMainMenuOperations(String operation){

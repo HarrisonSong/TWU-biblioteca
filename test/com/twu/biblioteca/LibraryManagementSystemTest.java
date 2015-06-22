@@ -247,7 +247,8 @@ public class LibraryManagementSystemTest {
         LMS.processMainMenuOperations("Show Customer Information");
         assertEquals("Li Lei\n" +
                 "harrisonsong1991@gmail.com\n" +
-                "98826095\n", outStream.toString());
+                "98826095\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
     }
 
     @Test
