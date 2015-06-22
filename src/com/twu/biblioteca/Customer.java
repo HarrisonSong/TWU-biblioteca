@@ -7,41 +7,41 @@ import java.util.LinkedList;
  */
 public class Customer {
     private String customerName;
-    private LinkedList<Book> borrowedBooksList;
+    private LinkedList<LibraryItem> borrowedItemsList;
 
     public Customer(String name) {
-       this(name, new LinkedList<Book>());
+       this(name, new LinkedList<LibraryItem>());
     }
 
-    public Customer(String name, LinkedList<Book> booksList) {
+    public Customer(String name, LinkedList<LibraryItem> booksList) {
         this.customerName = name;
-        this.borrowedBooksList = booksList;
+        this.borrowedItemsList = booksList;
     }
 
     public String getCustomerName() {
         return this.customerName;
     }
 
-    public LinkedList<Book> getBorrowedBooksList() {
-        return this.borrowedBooksList;
+    public LinkedList<LibraryItem> getBorrowedBooksList() {
+        return this.borrowedItemsList;
     }
 
-    public void borrowBook(Book newBook) {
-        if(!this.borrowedBooksList.contains(newBook)){
-            this.borrowedBooksList.addLast(newBook);
-            newBook.checkOut();
+    public void borrowItem(LibraryItem newItem) {
+        if(!this.borrowedItemsList.contains(newItem)){
+            this.borrowedItemsList.addLast(newItem);
+            newItem.checkOut();
         }
     }
 
-    public void returnBook(Book oldBook) {
-        if(this.borrowedBooksList.contains(oldBook)){
-            this.borrowedBooksList.remove(oldBook);
-            oldBook.checkIn();
+    public void returnItem(LibraryItem oldItem) {
+        if(this.borrowedItemsList.contains(oldItem)){
+            this.borrowedItemsList.remove(oldItem);
+            oldItem.checkIn();
         }
     }
 
-    public Book findBookIfAvailableToReturn(String bookName){
-        for(Book book : this.borrowedBooksList){
+    public LibraryItem findBookIfAvailableToReturn(String bookName){
+        for(LibraryItem book : this.borrowedItemsList){
             if(book.getName().toLowerCase().equals(bookName.toLowerCase())){
                 return book;
             }

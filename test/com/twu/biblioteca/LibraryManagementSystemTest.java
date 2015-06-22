@@ -64,7 +64,7 @@ public class LibraryManagementSystemTest {
 
     @Test
     public void testShowAvailableBookList() {
-        currentCustomer.borrowBook(bookA);
+        currentCustomer.borrowItem(bookA);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Programming Pearl Jon Bentley 2003\n" +
@@ -73,7 +73,7 @@ public class LibraryManagementSystemTest {
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.borrowBook(bookC);
+        currentCustomer.borrowItem(bookC);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Hamlet Shakespeare 1972\n" +
@@ -81,14 +81,14 @@ public class LibraryManagementSystemTest {
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.borrowBook(bookE);
+        currentCustomer.borrowItem(bookE);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Hamlet Shakespeare 1972\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.returnBook(bookC);
+        currentCustomer.returnItem(bookC);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Programming Pearl Jon Bentley 2003\n" +
@@ -96,7 +96,7 @@ public class LibraryManagementSystemTest {
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.returnBook(bookA);
+        currentCustomer.returnItem(bookA);
         LMS.showBooksList();
         assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
                 "The Old Man and the Sea Ernest Hemingway 1990\n" +

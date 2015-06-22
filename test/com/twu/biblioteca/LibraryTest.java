@@ -268,14 +268,65 @@ public class LibraryTest {
 
     @Test
     public void testReturnBookBAfterBorrowing(){
-        customer.borrowBook(bookB);
+        customer.borrowItem(bookB);
         assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return The Old Man and the Sea", customer));
         assertFalse(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnUnknownBookAfterBorrowingBookB(){
-        customer.borrowBook(bookB);
+        customer.borrowItem(bookB);
         assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Galaxy War",customer));
+    }
+
+    @Test
+    public void testBuyMovieA(){
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy Star War", customer));
+        assertFalse(movieA.getCheckOutStatus());
+    }
+
+    @Test
+    public void testSellMovieA(){
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell Star War",customer));
+        assertFalse(movieA.getCheckOutStatus());
+    }
+
+    @Test
+    public void testBorrowMovieA(){
+        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow Star War", customer));
+        assertTrue(movieA.getCheckOutStatus());
+    }
+
+    @Test
+    public void testBorrowUnknownMovie(){
+        movieA.checkOut();
+        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One", customer));
+    }
+
+    @Test
+    public void testSellMovieBAfterBorrowing(){
+        movieB.checkOut();
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell Jurassic Park", customer));
+        assertTrue(movieB.getCheckOutStatus());
+    }
+
+    @Test
+    public void testBuyMovieBAfterBorrowing(){
+        movieB.checkOut();
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy Jurassic Park", customer));
+        assertTrue(movieB.getCheckOutStatus());
+    }
+
+    @Test
+    public void testReturnMovieBAfterBorrowing(){
+        customer.borrowItem(movieB);
+        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return Jurassic Park", customer));
+        assertFalse(movieB.getCheckOutStatus());
+    }
+
+    @Test
+    public void testReturnUnknownMovieAfterBorrowingMovieB(){
+        customer.borrowItem(movieB);
+        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Lingo",customer));
     }
 }

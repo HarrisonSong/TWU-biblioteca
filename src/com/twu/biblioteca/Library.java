@@ -124,7 +124,7 @@ public class Library {
             case LIBRARY_OPTION_BORROW:{
                 LibraryItem targetItem = this.findItemIfAvailable(libraryItemOperation.getTarget());
                 if(targetItem != null){
-                    customer.borrowBook((Book)targetItem);
+                    customer.borrowItem(targetItem);
                     resultMessageType = SystemMessageType.SUCCESSFUL_CHECKOUT;
                 }else {
                     resultMessageType = SystemMessageType.UNSUCCESSFUL_CHECKOUT;
@@ -134,7 +134,7 @@ public class Library {
             case LIBRARY_OPTION_RETURN:{
                 LibraryItem targetItem = customer.findBookIfAvailableToReturn(libraryItemOperation.getTarget());
                 if(targetItem != null) {
-                    customer.returnBook((Book)targetItem);
+                    customer.returnItem(targetItem);
                     resultMessageType = SystemMessageType.SUCCESSFUL_RETURN;
                 }else {
                     resultMessageType = SystemMessageType.UNSUCCESSFUL_RETURN;
