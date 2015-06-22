@@ -117,7 +117,7 @@ public class Library {
         return null;
     }
 
-    public SystemMessageType processBooksOperations(String operation, Customer customer){
+    public SystemMessageType processLibraryItemsOperations(String operation, Customer customer){
         SystemMessageType resultMessageType = SystemMessageType.INVALID_BOOK_OPTION;
         LibraryItemOperation libraryItemOperation = LibraryOperationParser.parseOperation(operation);
         switch (libraryItemOperation.getOperation()){

@@ -230,103 +230,103 @@ public class LibraryTest {
 
     @Test
     public void testBuyBookA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy One Hundred Years of Solitude", customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy One Hundred Years of Solitude", customer));
         assertFalse(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testSellBookA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell One Hundred Years of Solitude",customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell One Hundred Years of Solitude", customer));
         assertFalse(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowBookA(){
-        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One Hundred Years of Solitude", customer));
+        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processLibraryItemsOperations("borrow One Hundred Years of Solitude", customer));
         assertTrue(bookA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowUnknownBook(){
         bookA.checkOut();
-        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One", customer));
+        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processLibraryItemsOperations("borrow One", customer));
     }
 
     @Test
     public void testSellBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell The Old Man and the Sea", customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell The Old Man and the Sea", customer));
         assertTrue(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testBuyBookBAfterBorrowing(){
         bookB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy The Old Man and the Sea", customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy The Old Man and the Sea", customer));
         assertTrue(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnBookBAfterBorrowing(){
         customer.borrowItem(bookB);
-        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return The Old Man and the Sea", customer));
+        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processLibraryItemsOperations("return The Old Man and the Sea", customer));
         assertFalse(bookB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnUnknownBookAfterBorrowingBookB(){
         customer.borrowItem(bookB);
-        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Galaxy War",customer));
+        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processLibraryItemsOperations("return Galaxy War", customer));
     }
 
     @Test
     public void testBuyMovieA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy Star War", customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy Star War", customer));
         assertFalse(movieA.getCheckOutStatus());
     }
 
     @Test
     public void testSellMovieA(){
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell Star War",customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell Star War", customer));
         assertFalse(movieA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowMovieA(){
-        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow Star War", customer));
+        assertEquals(SystemMessageType.SUCCESSFUL_CHECKOUT, library.processLibraryItemsOperations("borrow Star War", customer));
         assertTrue(movieA.getCheckOutStatus());
     }
 
     @Test
     public void testBorrowUnknownMovie(){
         movieA.checkOut();
-        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processBooksOperations("borrow One", customer));
+        assertEquals(SystemMessageType.UNSUCCESSFUL_CHECKOUT, library.processLibraryItemsOperations("borrow One", customer));
     }
 
     @Test
     public void testSellMovieBAfterBorrowing(){
         movieB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("sell Jurassic Park", customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("sell Jurassic Park", customer));
         assertTrue(movieB.getCheckOutStatus());
     }
 
     @Test
     public void testBuyMovieBAfterBorrowing(){
         movieB.checkOut();
-        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processBooksOperations("buy Jurassic Park", customer));
+        assertEquals(SystemMessageType.INVALID_BOOK_OPTION, library.processLibraryItemsOperations("buy Jurassic Park", customer));
         assertTrue(movieB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnMovieBAfterBorrowing(){
         customer.borrowItem(movieB);
-        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processBooksOperations("return Jurassic Park", customer));
+        assertEquals(SystemMessageType.SUCCESSFUL_RETURN, library.processLibraryItemsOperations("return Jurassic Park", customer));
         assertFalse(movieB.getCheckOutStatus());
     }
 
     @Test
     public void testReturnUnknownMovieAfterBorrowingMovieB(){
         customer.borrowItem(movieB);
-        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processBooksOperations("return Lingo",customer));
+        assertEquals(SystemMessageType.UNSUCCESSFUL_RETURN, library.processLibraryItemsOperations("return Lingo", customer));
     }
 }

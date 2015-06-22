@@ -78,7 +78,7 @@ public class LibraryManagementSystem {
             this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
         }else{
-            SystemMessager.showResponseMessage(this.library.processBooksOperations(operationContent, currentCustomer));
+            SystemMessager.showResponseMessage(this.library.processLibraryItemsOperations(operationContent, currentCustomer));
             SystemMessager.showRemindingMessage();
         }
     }
