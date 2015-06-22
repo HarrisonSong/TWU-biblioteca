@@ -110,7 +110,7 @@ public class Library {
 
     public LibraryItem findItemIfAvailable(String name) {
         for (LibraryItem item : this.itemsList) {
-            if (item.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (!item.getCheckOutStatus() && item.getName().toLowerCase().equals(name.toLowerCase())) {
                 return item;
             }
         }

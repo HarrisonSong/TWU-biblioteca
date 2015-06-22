@@ -198,20 +198,33 @@ public class LibraryTest {
     }
 
     @Test
-    public void testBookAIsAvailable(){
-        assertNotNull(library.findItemIfAvailable(BOOK_ONE_NAME));
-        assertTrue(library.findItemIfAvailable(BOOK_ONE_NAME) instanceof Book);
-    }
-
-    @Test
     public void testFindBook(){
         assertNotNull(library.findItem(BOOK_ONE_NAME));
         assertNull(library.findItem("Galaxy War"));
     }
 
     @Test
+    public void testBookAIsAvailable(){
+        assertNotNull(library.findItemIfAvailable(BOOK_ONE_NAME));
+        assertTrue(library.findItemIfAvailable(BOOK_ONE_NAME) instanceof Book);
+    }
+
+    @Test
     public void testBookAIsNotAvailableAfterBeingCheckedOut(){
         bookA.checkOut();
+        assertNull(library.findItemIfAvailable(BOOK_ONE_NAME));
+    }
+
+    @Test
+    public void testMovieAIsAvailable(){
+        assertNotNull(library.findItemIfAvailable(MOVIE_ONE_NAME));
+        assertTrue(library.findItemIfAvailable(MOVIE_ONE_NAME) instanceof Movie);
+    }
+
+    @Test
+    public void testMovieAIsNotAvailableAfterBeingCheckedOut(){
+        movieA.checkOut();
+        assertNull(library.findItemIfAvailable(MOVIE_ONE_NAME));
     }
 
     @Test
