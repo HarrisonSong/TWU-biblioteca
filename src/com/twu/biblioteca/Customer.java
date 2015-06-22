@@ -70,4 +70,11 @@ public class Customer {
         }
         return null;
     }
+
+    @Override
+    public String toString(){
+        return this.customerName + "\n" +
+                this.email + "\n" +
+                this.phoneNumber;
+    }
 }

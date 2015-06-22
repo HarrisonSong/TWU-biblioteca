@@ -235,4 +235,18 @@ public class CustomerTest {
         customerA.borrowItem(bookB);
         assertNull(customerB.findBookIfAvailableToReturn(bookC.getName()));
     }
+
+    @Test
+    public void testCustomerAToString(){
+        assertEquals("Li Lei\n" +
+                "harrisonsong1991@gmail.com\n" +
+                "98826095", customerA.toString());
+    }
+
+    @Test
+    public void testCustomerBToString(){
+        assertEquals("Han Meimei\n" +
+                "songqiyue1991@hotmail.com\n" +
+                "82805075", customerB.toString());
+    }
 }

@@ -69,6 +69,7 @@ public class LibraryManagementSystem {
     }
 
     public void showCustomerInformation(){
+        System.out.println(currentCustomer.toString());
     }
 
     public void processMainMenuOperations(String operation){
