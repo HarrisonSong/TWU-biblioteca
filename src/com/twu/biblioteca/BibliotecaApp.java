@@ -13,7 +13,7 @@ public class BibliotecaApp {
     }
 
     private static void setup() {
-        LinkedList<Book> booksList = new LinkedList<Book>();
+        LinkedList<LibraryItem> booksList = new LinkedList<LibraryItem>();
         booksList.add(new Book(BOOK_ONE_NAME, BOOK_ONE_AUTHOR, BOOK_ONE_PUBLISHING_YEAR));
         booksList.add(new Book(BOOK_TWO_NAME, BOOK_TWO_AUTHOR, BOOK_TWO_PUBLISHING_YEAR));
         booksList.add(new Book(BOOK_THREE_NAME, BOOK_THREE_AUTHOR, BOOK_THREE_PUBLISHING_YEAR));

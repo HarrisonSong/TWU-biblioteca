@@ -7,52 +7,52 @@ import java.util.LinkedList;
  * Created by qiyuesong on 21/6/15.
  */
 public class Library {
-    private LinkedList<Book> booksList;
+    private LinkedList<LibraryItem> booksList;
 
-    public Library(LinkedList<Book> booksList){
+    public Library(LinkedList<LibraryItem> booksList){
         this.booksList = booksList;
     }
 
-    public LinkedList<Book> getBooksList() {
+    public LinkedList<LibraryItem> getBooksList() {
         return this.booksList;
     }
 
-    public LinkedList<Book> getAvailableBooksList(){
-        LinkedList<Book> availableBooksList = new LinkedList<Book>();
-        Iterator<Book> iterator = this.booksList.iterator();
+    public LinkedList<LibraryItem> getAvailableBooksList(){
+        LinkedList<LibraryItem> availableBooksList = new LinkedList<LibraryItem>();
+        Iterator<LibraryItem> iterator = this.booksList.iterator();
         while(iterator.hasNext()){
-            Book currentBook = iterator.next();
-            if(!currentBook.getCheckOutStatus()){
-                availableBooksList.addLast(currentBook);
+            LibraryItem currentItem = iterator.next();
+            if(!currentItem.getCheckOutStatus()){
+                availableBooksList.addLast(currentItem);
             }
         }
         return availableBooksList;
     }
 
     public void showAvailableBooksList(){
-        LinkedList<Book> availableBooksList = getAvailableBooksList();
-        Iterator<Book> iterator = availableBooksList.iterator();
+        LinkedList<LibraryItem> availableBooksList = getAvailableBooksList();
+        Iterator<LibraryItem> iterator = availableBooksList.iterator();
         String resultString = "";
         while(iterator.hasNext()){
-            Book currentBook = iterator.next();
-            resultString = resultString + currentBook.toString() + "\n";
+            LibraryItem currentItem = iterator.next();
+            resultString = resultString + currentItem.toString() + "\n";
         }
         System.out.print(resultString);
     }
 
-    public Book findBook(String bookName){
-        for (Book book : this.getBooksList()) {
-            if (book.getName().toLowerCase().equals(bookName.toLowerCase())) {
-                return book;
+    public LibraryItem findBook(String bookName){
+        for (LibraryItem item : this.getBooksList()) {
+            if (item.getName().toLowerCase().equals(bookName.toLowerCase())) {
+                return item;
             }
         }
         return null;
     }
 
-    public Book findBookIfAvailable(String bookName) {
-        for (Book book : this.getAvailableBooksList()) {
-            if (book.getName().toLowerCase().equals(bookName.toLowerCase())) {
-                return book;
+    public LibraryItem findBookIfAvailable(String bookName) {
+        for (LibraryItem item : this.getAvailableBooksList()) {
+            if (item.getName().toLowerCase().equals(bookName.toLowerCase())) {
+                return item;
             }
         }
         return null;
@@ -63,9 +63,9 @@ public class Library {
         BookOperation bookOperation = LibraryOperationParser.parseOperation(operation);
         switch (bookOperation.getOperation()){
             case LIBRARY_OPTION_BORROW:{
-                Book targetBook = this.findBookIfAvailable(bookOperation.getTarget());
-                if(targetBook != null){
-                    customer.borrowBook(targetBook);
+                LibraryItem targetItem = this.findBookIfAvailable(bookOperation.getTarget());
+                if(targetItem != null){
+                    customer.borrowBook((Book)targetItem);
                     resultMessageType = SystemMessageType.SUCCESSFUL_CHECKOUT;
                 }else {
                     resultMessageType = SystemMessageType.UNSUCCESSFUL_CHECKOUT;
@@ -73,9 +73,9 @@ public class Library {
                 break;
             }
             case LIBRARY_OPTION_RETURN:{
-                Book targetBook = customer.findBookIfAvailableToReturn(bookOperation.getTarget());
-                if(targetBook != null) {
-                    customer.returnBook(targetBook);
+                LibraryItem targetItem = customer.findBookIfAvailableToReturn(bookOperation.getTarget());
+                if(targetItem != null) {
+                    customer.returnBook((Book)targetItem);
                     resultMessageType = SystemMessageType.SUCCESSFUL_RETURN;
                 }else {
                     resultMessageType = SystemMessageType.UNSUCCESSFUL_RETURN;

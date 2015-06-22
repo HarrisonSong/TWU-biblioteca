@@ -19,8 +19,8 @@ public class LibraryManagementSystem {
     private Library library;
     private String systemCurrentPosition;
 
-    public LibraryManagementSystem(LinkedList<Book> books, LinkedList<String> menuList){
-        this.library = new Library(books);
+    public LibraryManagementSystem(LinkedList<LibraryItem> items, LinkedList<String> menuList){
+        this.library = new Library(items);
         currentCustomer = new Customer(DEFAULT_USERNAME);
         this.mainMenu = new MainMenu(menuList);
         this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;

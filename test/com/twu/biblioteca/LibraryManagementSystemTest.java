@@ -38,7 +38,7 @@ public class LibraryManagementSystemTest {
         bookD = new Book(BOOK_FOUR_NAME, BOOK_FOUR_AUTHOR, BOOK_FOUR_PUBLISHING_YEAR);
         bookE = new Book(BOOK_FIVE_NAME, BOOK_FIVE_AUTHOR, BOOK_FIVE_PUBLISHING_YEAR);
 
-        LinkedList<Book> booksList = new LinkedList<Book>();
+        LinkedList<LibraryItem> booksList = new LinkedList<LibraryItem>();
         booksList.add(bookA);
         booksList.add(bookB);
         booksList.add(bookC);
