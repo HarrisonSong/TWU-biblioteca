@@ -195,7 +195,6 @@ public class LibraryManagementSystemTest {
         assertEquals("That is not a valid item to return.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-
         LMS.processLibraryOperations("return Gone with the wind");
         assertEquals("Thank you for returning it.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
@@ -252,5 +251,31 @@ public class LibraryManagementSystemTest {
                 "List Books\n" +
                 "List Movies\n" +
                 "Please type in the operation you want to do: Thank you for using our system. Good bye!\n", outStream.toString());
+    }
+
+    @Test
+    public void testCustomerLogin(){
+        String simulatedUserLogin = "" + System.getProperty("line.separator")
+                + CUSTOMER_ONE_PASSWORD + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
+        assertEquals("Please Login First\n" +
+                "library number: password: Your credential is incorrect.\n",outStream.toString());
+        outStream.reset();
+
+        simulatedUserLogin = CUSTOMER_ONE_LIBRARY_NUMBER + System.getProperty("line.separator")
+                + "" + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
+        assertEquals("Please Login First\n" +
+                "library number: password: Your credential is incorrect.\n",outStream.toString());
+        outStream.reset();
+
+        simulatedUserLogin = CUSTOMER_ONE_LIBRARY_NUMBER + System.getProperty("line.separator")
+                + CUSTOMER_ONE_PASSWORD + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
+        assertEquals("Please Login First\n" +
+                "library number: password: Login successfully! Hello Li Lei.\n",outStream.toString());
     }
 }
