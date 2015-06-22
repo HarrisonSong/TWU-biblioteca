@@ -99,7 +99,7 @@ public class Library {
         System.out.print(resultString);
     }
 
-    public LibraryItem finditem(String name){
+    public LibraryItem findItem(String name){
         for (LibraryItem item : this.itemsList) {
             if (item.getName().toLowerCase().equals(name.toLowerCase())) {
                 return item;

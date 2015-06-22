@@ -10,8 +10,8 @@ import java.util.LinkedList;
 
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
 import static com.twu.biblioteca.PredefinedMovieDetails.*;
-import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 18/6/15.
@@ -181,6 +181,23 @@ public class LibraryTest {
     }
 
     @Test
+    public void testShowAvailableMoviesList(){
+        movieA.checkOut();
+        library.showAvailableMoviesList();
+        assertEquals("Jurassic Park 1990 Spielberg 7\n" +
+                "007 2001 Louis 7\n" +
+                "Lord of the Ring 2002 Tom 8\n", outStream.toString());
+        outStream.reset();
+
+        movieA.checkIn();
+        library.showAvailableMoviesList();
+        assertEquals("Star War 1996 Jim 9\n" +
+                "Jurassic Park 1990 Spielberg 7\n" +
+                "007 2001 Louis 7\n" +
+                "Lord of the Ring 2002 Tom 8\n", outStream.toString());
+    }
+
+    @Test
     public void testBookAIsAvailable(){
         assertNotNull(library.findItemIfAvailable(BOOK_ONE_NAME));
         assertTrue(library.findItemIfAvailable(BOOK_ONE_NAME) instanceof Book);
@@ -188,8 +205,8 @@ public class LibraryTest {
 
     @Test
     public void testFindBook(){
-        assertNotNull(library.finditem(BOOK_ONE_NAME));
-        assertNull(library.finditem("Galaxy War"));
+        assertNotNull(library.findItem(BOOK_ONE_NAME));
+        assertNull(library.findItem("Galaxy War"));
     }
 
     @Test
