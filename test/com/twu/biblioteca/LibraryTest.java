@@ -59,8 +59,25 @@ public class LibraryTest {
     }
 
     @Test
+    public void testGetAllItemsList(){
+        assertEquals(9, library.getItemsList().size());
+    }
+
+    @Test
     public void testGetAllBooksList(){
         assertEquals(5, library.getAllBooksList().size());
+    }
+
+    @Test
+    public void testGetAllMoviesList(){
+        assertEquals(4, library.getAllMoviesList().size());
+    }
+
+    @Test
+    public void testGetAvailableItemListAfterBookAHasBeenCheckedOut(){
+        assertEquals(9, library.getAvailableItemsList().size());
+        bookA.checkOut();
+        assertEquals(8, library.getAvailableItemsList().size());
     }
 
     @Test
@@ -68,6 +85,42 @@ public class LibraryTest {
         assertEquals(5, library.getAvailableBooksList().size());
         bookA.checkOut();
         assertEquals(4, library.getAvailableBooksList().size());
+    }
+
+    @Test
+    public void testGetAvailableMoviesListAfterBookAHasBeenCheckedOut(){
+        assertEquals(4, library.getAvailableMoviesList().size());
+        bookA.checkOut();
+        assertEquals(4, library.getAvailableMoviesList().size());
+    }
+
+    @Test
+    public void testGetAvailableItemListAfterMovieAHasBeenCheckedOut(){
+        assertEquals(9, library.getAvailableItemsList().size());
+        bookA.checkOut();
+        assertEquals(8, library.getAvailableItemsList().size());
+    }
+
+    @Test
+    public void testGetAvailableBooksListAfterMovieAHasBeenCheckedOut(){
+        assertEquals(5, library.getAvailableBooksList().size());
+        movieA.checkOut();
+        assertEquals(5, library.getAvailableBooksList().size());
+    }
+
+    @Test
+    public void testGetAvailableMoviesListAfterMovieAHasBeenCheckedOut(){
+        assertEquals(4, library.getAvailableMoviesList().size());
+        movieA.checkOut();
+        assertEquals(3, library.getAvailableMoviesList().size());
+    }
+
+    @Test
+    public void testGetAvailableItemListAfterBookAHasBeenCheckedIn(){
+        bookA.checkOut();
+        assertEquals(8, library.getAvailableItemsList().size());
+        bookA.checkIn();
+        assertEquals(9, library.getAvailableItemsList().size());
     }
 
     @Test
@@ -79,18 +132,35 @@ public class LibraryTest {
     }
 
     @Test
-    public void testGetAvailableBooksListAfterBookCHasBeenCheckedOut(){
-        assertEquals(5, library.getAvailableBooksList().size());
-        bookC.checkOut();
-        assertEquals(4, library.getAvailableBooksList().size());
+    public void testGetAvailableMoviesListAfterMovieAHasBeenCheckedIn(){
+        bookA.checkOut();
+        assertEquals(4, library.getAvailableMoviesList().size());
+        bookA.checkIn();
+        assertEquals(4, library.getAvailableMoviesList().size());
     }
 
     @Test
-    public void testGetAvailableBooksListAfterBookCHasBeenCheckedIn(){
-        bookC.checkOut();
-        assertEquals(4, library.getAvailableBooksList().size());
-        bookC.checkIn();
+    public void testGetAvailableItemListAfterMovieAHasBeenCheckedIn(){
+        movieA.checkOut();
+        assertEquals(8, library.getAvailableItemsList().size());
+        movieA.checkIn();
+        assertEquals(9, library.getAvailableItemsList().size());
+    }
+
+    @Test
+    public void testGetAvailableBooksListAfterMovieAHasBeenCheckedIn(){
+        movieA.checkOut();
         assertEquals(5, library.getAvailableBooksList().size());
+        movieA.checkIn();
+        assertEquals(5, library.getAvailableBooksList().size());
+    }
+
+    @Test
+    public void testGetAvailableMoviesListAfterBookAHasBeenCheckedIn(){
+        movieA.checkOut();
+        assertEquals(3, library.getAvailableMoviesList().size());
+        movieA.checkIn();
+        assertEquals(4, library.getAvailableMoviesList().size());
     }
 
     @Test
