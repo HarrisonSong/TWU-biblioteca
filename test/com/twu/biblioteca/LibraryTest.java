@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import java.util.LinkedList;
 
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
+import static com.twu.biblioteca.PredefinedMovieDetails.*;
 import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
 
@@ -17,7 +18,8 @@ import static com.twu.biblioteca.PredefinedUserDetails.*;
  */
 public class LibraryTest {
     private Library library;
-    private  Book bookA, bookB, bookC, bookD, bookE;
+    private Book bookA, bookB, bookC, bookD, bookE;
+    private Movie movieA, movieB, movieC, movieD;
     private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
     private Customer customer;
 
@@ -31,14 +33,23 @@ public class LibraryTest {
         bookD = new Book(BOOK_FOUR_NAME, BOOK_FOUR_AUTHOR, BOOK_FOUR_PUBLISHING_YEAR);
         bookE = new Book(BOOK_FIVE_NAME, BOOK_FIVE_AUTHOR, BOOK_FIVE_PUBLISHING_YEAR);
 
-        LinkedList<LibraryItem> booksList = new LinkedList<LibraryItem>();
-        booksList.add(bookA);
-        booksList.add(bookB);
-        booksList.add(bookC);
-        booksList.add(bookD);
-        booksList.add(bookE);
+        movieA = new Movie(MOVIE_ONE_NAME, MOVIE_ONE_YEAR, MOVIE_ONE_DIRECTOR, MOVIE_ONE_RATING);
+        movieB = new Movie(MOVIE_TWO_NAME, MOVIE_TWO_YEAR, MOVIE_TWO_DIRECTOR, MOVIE_TWO_RATING);
+        movieA = new Movie(MOVIE_THREE_NAME, MOVIE_THREE_YEAR, MOVIE_THREE_DIRECTOR, MOVIE_THREE_RATING);
+        movieB = new Movie(MOVIE_FOUR_NAME, MOVIE_FOUR_YEAR, MOVIE_FOUR_DIRECTOR, MOVIE_FOUR_RATING);
 
-        library = new Library(booksList);
+        LinkedList<LibraryItem> itemsList = new LinkedList<LibraryItem>();
+        itemsList.add(bookA);
+        itemsList.add(bookB);
+        itemsList.add(bookC);
+        itemsList.add(bookD);
+        itemsList.add(bookE);
+        itemsList.add(movieA);
+        itemsList.add(movieB);
+        itemsList.add(movieC);
+        itemsList.add(movieD);
+
+        library = new Library(itemsList);
         customer = new Customer(DEFAULT_USERNAME);
     }
 
@@ -49,7 +60,7 @@ public class LibraryTest {
 
     @Test
     public void testGetAllBooksList(){
-        assertEquals(5, library.getBooksList().size());
+        assertEquals(5, library.getAllBooksList().size());
     }
 
     @Test
@@ -101,20 +112,19 @@ public class LibraryTest {
 
     @Test
     public void testBookAIsAvailable(){
-        assertNotNull(library.findBookIfAvailable(BOOK_ONE_NAME));
-        assertTrue(library.findBookIfAvailable(BOOK_ONE_NAME) instanceof Book);
+        assertNotNull(library.findItemIfAvailable(BOOK_ONE_NAME));
+        assertTrue(library.findItemIfAvailable(BOOK_ONE_NAME) instanceof Book);
     }
 
     @Test
     public void testFindBook(){
-        assertNotNull(library.findBook(BOOK_ONE_NAME));
-        assertNull(library.findBook("Galaxy War"));
+        assertNotNull(library.finditem(BOOK_ONE_NAME));
+        assertNull(library.finditem("Galaxy War"));
     }
 
     @Test
     public void testBookAIsNotAvailableAfterBeingCheckedOut(){
         bookA.checkOut();
-        assertNull(library.findBookIfAvailable(BOOK_ONE_NAME));
     }
 
     @Test
