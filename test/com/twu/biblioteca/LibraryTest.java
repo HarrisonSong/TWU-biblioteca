@@ -198,8 +198,9 @@ public class LibraryTest {
     }
 
     @Test
-    public void testFindBook(){
+    public void testFindItem(){
         assertNotNull(library.findItem(BOOK_ONE_NAME));
+        assertNotNull(library.findItem(MOVIE_TWO_NAME));
         assertNull(library.findItem("Galaxy War"));
     }
 
