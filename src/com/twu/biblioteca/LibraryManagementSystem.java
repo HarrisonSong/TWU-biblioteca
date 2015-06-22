@@ -18,9 +18,9 @@ public class LibraryManagementSystem {
     private String systemCurrentPosition;
     private Authenticator authenticator;
 
-    public LibraryManagementSystem(LinkedList<LibraryItem> items, LinkedList<String> menuList){
+    public LibraryManagementSystem(LinkedList<LibraryItem> items){
         this.library = new Library(items);
-        this.mainMenu = new MainMenu(menuList);
+        this.mainMenu = new MainMenu();
         this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
         this.authenticator = new Authenticator();
     }

@@ -3,7 +3,9 @@ package com.twu.biblioteca;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import static com.twu.biblioteca.MainMenuOptionConstants.*;
+import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_BOOKS_OPTION;
+import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_MOVIES_OPTION;
+import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_SHOW_CUSTOMER_INFORMATION_OPTION;
 
 /**
  * Created by qiyuesong on 18/6/15.
@@ -11,6 +13,13 @@ import static com.twu.biblioteca.MainMenuOptionConstants.*;
 public class MainMenu {
     private static final String MENU_TITLE = "Main Menu";
     private LinkedList<String> menuList;
+
+    public MainMenu(){
+        this.menuList = new LinkedList<String>();
+        this.menuList.add(MAIN_MENU_LIST_BOOKS_OPTION);
+        this.menuList.add(MAIN_MENU_LIST_MOVIES_OPTION);
+        this.menuList.add(MAIN_MENU_SHOW_CUSTOMER_INFORMATION_OPTION);
+    }
 
     public MainMenu(LinkedList<String> menuList){
         this.menuList = menuList;

@@ -9,8 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_BOOKS_OPTION;
-import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_MOVIES_OPTION;
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
 import static com.twu.biblioteca.PredefinedMovieDetails.*;
 import static com.twu.biblioteca.PredefinedUserCredentials.CUSTOMER_ONE_LIBRARY_NUMBER;
@@ -58,10 +56,7 @@ public class LibraryManagementSystemTest {
         itemsList.add(movieC);
         itemsList.add(movieD);
 
-        LinkedList<String> menuList = new LinkedList<String>();
-        menuList.add(MAIN_MENU_LIST_BOOKS_OPTION);
-        menuList.add(MAIN_MENU_LIST_MOVIES_OPTION);
-        LMS = new LibraryManagementSystem(itemsList, menuList);
+        LMS = new LibraryManagementSystem(itemsList);
     }
 
     @After
@@ -242,6 +237,20 @@ public class LibraryManagementSystemTest {
     }
 
     @Test
+    public void testProcessLibraryOperationsForShowCustomerInfo() {
+        String simulatedUserLogin = CUSTOMER_ONE_LIBRARY_NUMBER + System.getProperty("line.separator")
+                + CUSTOMER_ONE_PASSWORD + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
+        outStream.reset();
+
+        LMS.processMainMenuOperations("Show Customer Information");
+        assertEquals("Li Lei\n" +
+                "harrisonsong1991@gmail.com\n" +
+                "98826095\n", outStream.toString());
+    }
+
+    @Test
     public void testShowGoodByeMessageAfterQuit(){
         inStream = new ByteArrayInputStream("quit".getBytes());
         System.setIn(inStream);
@@ -297,6 +306,7 @@ public class LibraryManagementSystemTest {
         assertEquals("Main Menu\n" +
                 "List Books\n" +
                 "List Movies\n" +
+                "Show Customer Information\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
     }
 }

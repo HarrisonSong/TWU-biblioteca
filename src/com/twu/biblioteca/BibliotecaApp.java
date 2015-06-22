@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
 import java.util.LinkedList;
+
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
-import static com.twu.biblioteca.MainMenuOptionConstants.*;
 
 public class BibliotecaApp {
     private static LibraryManagementSystem LMS;
@@ -20,10 +20,6 @@ public class BibliotecaApp {
         booksList.add(new Book(BOOK_FOUR_NAME, BOOK_FOUR_AUTHOR, BOOK_FOUR_PUBLISHING_YEAR));
         booksList.add(new Book(BOOK_FIVE_NAME, BOOK_FIVE_AUTHOR, BOOK_FIVE_PUBLISHING_YEAR));
 
-        LinkedList<String> menuList = new LinkedList<String>();
-        menuList.add(MAIN_MENU_LIST_BOOKS_OPTION);
-        menuList.add(MAIN_MENU_LIST_MOVIES_OPTION);
-
-        LMS = new LibraryManagementSystem(booksList, menuList);
+        LMS = new LibraryManagementSystem(booksList);
     }
 }
