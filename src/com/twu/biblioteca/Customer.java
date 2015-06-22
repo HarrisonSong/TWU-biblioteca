@@ -16,9 +16,9 @@ public class Customer {
        this(name, email, phoneNumber,  new LinkedList<LibraryItem>());
     }
 
-    public Customer(String name, String email, String phoneNumber, LinkedList<LibraryItem> booksList) {
+    public Customer(String name, String email, String phoneNumber, LinkedList<LibraryItem> itemsList) {
         this.customerName = name;
-        this.borrowedItemsList = booksList;
+        this.borrowedItemsList = itemsList;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.isLoggedIn = false;
@@ -44,7 +44,7 @@ public class Customer {
         isLoggedIn = true;
     }
 
-    public LinkedList<LibraryItem> getBorrowedBooksList() {
+    public LinkedList<LibraryItem> getBorrowedItemsList() {
         return this.borrowedItemsList;
     }
 

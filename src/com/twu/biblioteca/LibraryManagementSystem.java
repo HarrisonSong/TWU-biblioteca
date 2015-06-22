@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import static com.twu.biblioteca.MainMenuOptionConstants.*;
-import static com.twu.biblioteca.PredefinedUserDetails.*;
-import static com.twu.biblioteca.SystemOptionConstants.*;
+import static com.twu.biblioteca.SystemOptionConstants.SYSTEM_OPTION_BACK;
+import static com.twu.biblioteca.SystemOptionConstants.SYSTEM_OPTION_QUIT;
 import static com.twu.biblioteca.UserSystemPositions.*;
 
 /**
@@ -16,12 +16,13 @@ public class LibraryManagementSystem {
     private MainMenu mainMenu;
     private Library library;
     private String systemCurrentPosition;
+    private Authenticator authenticator;
 
     public LibraryManagementSystem(LinkedList<LibraryItem> items, LinkedList<String> menuList){
         this.library = new Library(items);
-        currentCustomer = new Customer(CUSTOMER_ONE_NAME, CUSTOMER_ONE_EMAIL, CUSTOMER_ONE_PHONENUMBER);
         this.mainMenu = new MainMenu(menuList);
         this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
+        this.authenticator = new Authenticator();
     }
 
     public void startSystem(){
@@ -32,7 +33,7 @@ public class LibraryManagementSystem {
         while(!operation.equals(SYSTEM_OPTION_QUIT)){
             if(systemCurrentPosition.equals(SYSTEM_POSITION_MAIN_MENU)){
                 processMainMenuOperations(operation);
-            }else if(systemCurrentPosition.equals(SYSTEM_POSITION_LIST_BOOKS)){
+            }else if(systemCurrentPosition.equals(SYSTEM_POSITION_LIST_BOOKS) || systemCurrentPosition.equals(SYSTEM_POSITION_LIST_MOVIES)){
                 processLibraryOperations(operation);
             }
             operation = sc.nextLine();
@@ -63,14 +64,20 @@ public class LibraryManagementSystem {
         SystemMessager.showRemindingMessage();
     }
 
+    public void showCustomerInformation(){
+
+    }
+
     public void processMainMenuOperations(String operation){
         String detectedOperation = this.mainMenu.checkOperation(operation);
         if(detectedOperation.equals(MAIN_MENU_LIST_BOOKS_OPTION)){
             showBooksList();
             this.systemCurrentPosition = SYSTEM_POSITION_LIST_BOOKS;
-        }else if(detectedOperation.equals(MAIN_MENU_LIST_MOVIES_OPTION)){
+        }else if(detectedOperation.equals(MAIN_MENU_LIST_MOVIES_OPTION)) {
             showMoviesList();
             this.systemCurrentPosition = SYSTEM_POSITION_LIST_MOVIES;
+        }else if(detectedOperation.equals(MAIN_MENU_SHOW_CUSTOMER_INFORMATION_OPTION) && currentCustomer != null){
+            showCustomerInformation();
         }else{
             SystemMessager.showResponseMessage(SystemMessageType.INVALID_MENU_OPTION);
         }
@@ -81,9 +88,27 @@ public class LibraryManagementSystem {
         if(operationContent.equals(SYSTEM_OPTION_BACK)){
             this.systemCurrentPosition = SYSTEM_POSITION_MAIN_MENU;
             this.showMainMenu();
+        }else if(currentCustomer == null) {
+            customerLogin();
+            SystemMessager.showRemindingMessage();
         }else{
             SystemMessager.showResponseMessage(this.library.processLibraryItemsOperations(operationContent, currentCustomer));
             SystemMessager.showRemindingMessage();
+        }
+    }
+
+    public void customerLogin(){
+        System.out.println("Please Login First");
+        System.out.print("library number: ");
+        Scanner sc = new Scanner(System.in);
+        String libraryNumber = sc.nextLine().trim();
+        System.out.print("password: ");
+        String password = sc.nextLine().trim();
+        this.currentCustomer = this.authenticator.authenticate(libraryNumber, password);
+        if(this.currentCustomer != null){
+            System.out.println("Login successfully! Hello " + this.currentCustomer.getCustomerName() + ".");
+        }else{
+            System.out.println("Your credential is incorrect.");
         }
     }
 }

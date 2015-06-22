@@ -4,18 +4,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
-import static com.twu.biblioteca.MainMenuOptionConstants.*;
-import static com.twu.biblioteca.PredefinedMovieDetails.*;
-import static org.junit.Assert.*;
+import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_BOOKS_OPTION;
+import static com.twu.biblioteca.MainMenuOptionConstants.MAIN_MENU_LIST_MOVIES_OPTION;
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
-import static com.twu.biblioteca.PredefinedUserDetails.*;
+import static com.twu.biblioteca.PredefinedMovieDetails.*;
+import static com.twu.biblioteca.PredefinedUserCredentials.CUSTOMER_ONE_LIBRARY_NUMBER;
+import static com.twu.biblioteca.PredefinedUserCredentials.CUSTOMER_ONE_PASSWORD;
+import static com.twu.biblioteca.SystemOptionConstants.SYSTEM_OPTION_BACK;
 import static com.twu.biblioteca.UserSystemPositions.*;
-import static com.twu.biblioteca.SystemOptionConstants.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by qiyuesong on 16/6/15.
@@ -27,7 +30,6 @@ public class LibraryManagementSystemTest {
     private LibraryManagementSystem LMS;
     private Book bookA, bookB, bookC, bookD, bookE;
     private Movie movieA, movieB, movieC, movieD;
-    private Customer currentCustomer;
 
     @Before
     public void setup() {
@@ -60,23 +62,24 @@ public class LibraryManagementSystemTest {
         menuList.add(MAIN_MENU_LIST_BOOKS_OPTION);
         menuList.add(MAIN_MENU_LIST_MOVIES_OPTION);
         LMS = new LibraryManagementSystem(itemsList, menuList);
-        currentCustomer = LMS.getCurrentCustomer();
     }
 
     @After
     public void cleanUp() {
         System.setOut(null);
         System.setErr(null);
-    }
-
-    @Test
-    public void testCurrentCustomer() {
-        assertEquals(CUSTOMER_ONE_NAME, currentCustomer.getCustomerName());
+        System.setIn(System.in);
     }
 
     @Test
     public void testShowAvailableBookList() {
-        currentCustomer.borrowItem(bookA);
+        String simulatedUserLogin = CUSTOMER_ONE_LIBRARY_NUMBER + System.getProperty("line.separator")
+                + CUSTOMER_ONE_PASSWORD + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
+        outStream.reset();
+
+        LMS.getCurrentCustomer().borrowItem(bookA);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Programming Pearl Jon Bentley 2003\n" +
@@ -85,7 +88,7 @@ public class LibraryManagementSystemTest {
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.borrowItem(bookC);
+        LMS.getCurrentCustomer().borrowItem(bookC);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Hamlet Shakespeare 1972\n" +
@@ -93,14 +96,14 @@ public class LibraryManagementSystemTest {
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.borrowItem(bookE);
+        LMS.getCurrentCustomer().borrowItem(bookE);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Hamlet Shakespeare 1972\n" +
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.returnItem(bookC);
+        LMS.getCurrentCustomer().returnItem(bookC);
         LMS.showBooksList();
         assertEquals("The Old Man and the Sea Ernest Hemingway 1990\n" +
                 "Programming Pearl Jon Bentley 2003\n" +
@@ -108,7 +111,7 @@ public class LibraryManagementSystemTest {
                 "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
-        currentCustomer.returnItem(bookA);
+        LMS.getCurrentCustomer().returnItem(bookA);
         LMS.showBooksList();
         assertEquals("One Hundred Years of Solitude Gabriel García Márquez 1910\n" +
                 "The Old Man and the Sea Ernest Hemingway 1990\n" +
@@ -166,16 +169,23 @@ public class LibraryManagementSystemTest {
         assertEquals(SYSTEM_POSITION_LIST_BOOKS, LMS.getSystemCurrentPosition());
         outStream.reset();
 
+        String simulatedUserLogin = CUSTOMER_ONE_LIBRARY_NUMBER + System.getProperty("line.separator")
+                + CUSTOMER_ONE_PASSWORD + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
+        outStream.reset();
+
         LMS.processLibraryOperations("borrow Harry Potter");
-        assertEquals("That book is not available.\nPlease type in the operation you want to do: ", outStream.toString());
+        assertEquals("That book is not available.\n" +
+                "Please type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
         LMS.processLibraryOperations("borrow Gone with the wind");
         assertEquals("Thank you! Enjoy the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
-        assertEquals(1, currentCustomer.getBorrowedBooksList().size());
-        assertTrue(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
-        assertEquals("Gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getName());
+        assertEquals(1, LMS.getCurrentCustomer().getBorrowedItemsList().size());
+        assertTrue(LMS.getCurrentCustomer().getBorrowedItemsList().getFirst().getCheckOutStatus());
+        assertEquals("Gone with the wind", LMS.getCurrentCustomer().getBorrowedItemsList().getFirst().getName());
 
         LMS.processLibraryOperations("buy Gone with the wind");
         assertEquals("Your operation is not available.\nPlease type in the operation you want to do: ", outStream.toString());
@@ -189,7 +199,7 @@ public class LibraryManagementSystemTest {
         LMS.processLibraryOperations("return Gone with the wind");
         assertEquals("Thank you for returning the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
-        assertEquals(0, currentCustomer.getBorrowedBooksList().size());
+        assertEquals(0, LMS.getCurrentCustomer().getBorrowedItemsList().size());
 
         LMS.processLibraryOperations(SYSTEM_OPTION_BACK);
         assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
@@ -197,22 +207,24 @@ public class LibraryManagementSystemTest {
 
     @Test
     public void testProcessLibraryOperationsForMovies() {
-        LMS.processMainMenuOperations("List Books");
-        assertEquals(SYSTEM_POSITION_LIST_BOOKS, LMS.getSystemCurrentPosition());
+        LMS.processMainMenuOperations("List Movies");
+        assertEquals(SYSTEM_POSITION_LIST_MOVIES, LMS.getSystemCurrentPosition());
         outStream.reset();
 
-        LMS.processLibraryOperations("borrow Harry Potter");
-        assertEquals("That book is not available.\nPlease type in the operation you want to do: ", outStream.toString());
+        String simulatedUserLogin = CUSTOMER_ONE_LIBRARY_NUMBER + System.getProperty("line.separator")
+                + CUSTOMER_ONE_PASSWORD + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserLogin.getBytes()));
+        LMS.customerLogin();
         outStream.reset();
 
-        LMS.processLibraryOperations("borrow Gone with the wind");
+        LMS.processLibraryOperations("borrow Star War");
         assertEquals("Thank you! Enjoy the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
-        assertEquals(1, currentCustomer.getBorrowedBooksList().size());
-        assertTrue(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
-        assertEquals("Gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getName());
+        assertEquals(1, LMS.getCurrentCustomer().getBorrowedItemsList().size());
+        assertTrue(LMS.getCurrentCustomer().getBorrowedItemsList().getFirst().getCheckOutStatus());
+        assertEquals("Star War", LMS.getCurrentCustomer().getBorrowedItemsList().getFirst().getName());
 
-        LMS.processLibraryOperations("buy Gone with the wind");
+        LMS.processLibraryOperations("buy Star War");
         assertEquals("Your operation is not available.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
 
@@ -221,10 +233,10 @@ public class LibraryManagementSystemTest {
         outStream.reset();
 
 
-        LMS.processLibraryOperations("return Gone with the wind");
+        LMS.processLibraryOperations("return Star War");
         assertEquals("Thank you for returning the book.\nPlease type in the operation you want to do: ", outStream.toString());
         outStream.reset();
-        assertEquals(0, currentCustomer.getBorrowedBooksList().size());
+        assertEquals(0, LMS.getCurrentCustomer().getBorrowedItemsList().size());
 
         LMS.processLibraryOperations(SYSTEM_OPTION_BACK);
         assertEquals(SYSTEM_POSITION_MAIN_MENU, LMS.getSystemCurrentPosition());
