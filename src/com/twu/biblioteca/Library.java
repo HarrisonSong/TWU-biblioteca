@@ -42,7 +42,7 @@ public class Library {
 
     public Book findBook(String bookName){
         for (Book book : this.getBooksList()) {
-            if (book.getBookName().toLowerCase().equals(bookName.toLowerCase())) {
+            if (book.getName().toLowerCase().equals(bookName.toLowerCase())) {
                 return book;
             }
         }
@@ -51,7 +51,7 @@ public class Library {
 
     public Book findBookIfAvailable(String bookName) {
         for (Book book : this.getAvailableBooksList()) {
-            if (book.getBookName().toLowerCase().equals(bookName.toLowerCase())) {
+            if (book.getName().toLowerCase().equals(bookName.toLowerCase())) {
                 return book;
             }
         }

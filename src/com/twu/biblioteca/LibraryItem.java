@@ -5,7 +5,7 @@ package com.twu.biblioteca;
  */
 public class LibraryItem {
     protected String name;
-    private boolean checkOutStatus;
+    protected boolean checkOutStatus;
 
     public LibraryItem(String name) {
         this.name = name;

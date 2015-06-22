@@ -42,7 +42,7 @@ public class Customer {
 
     public Book findBookIfAvailableToReturn(String bookName){
         for(Book book : this.borrowedBooksList){
-            if(book.getBookName().toLowerCase().equals(bookName.toLowerCase())){
+            if(book.getName().toLowerCase().equals(bookName.toLowerCase())){
                 return book;
             }
         }

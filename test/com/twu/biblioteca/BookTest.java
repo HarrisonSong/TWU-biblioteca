@@ -19,12 +19,12 @@ public class BookTest {
 
     @Test
     public void testIfBookANameIsCorrect() {
-        assertEquals(BOOK_FOUR_NAME, bookA.getBookName());
+        assertEquals(BOOK_FOUR_NAME, bookA.getName());
     }
 
     @Test
     public void testIfBookBNameIsCorrect() {
-        assertEquals(BOOK_FIVE_NAME, bookB.getBookName());
+        assertEquals(BOOK_FIVE_NAME, bookB.getName());
     }
 
     @Test

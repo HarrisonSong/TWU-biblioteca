@@ -142,7 +142,7 @@ public class LibraryManagementSystemTest {
         outStream.reset();
         assertEquals(1, currentCustomer.getBorrowedBooksList().size());
         assertTrue(currentCustomer.getBorrowedBooksList().getFirst().getCheckOutStatus());
-        assertEquals("Gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getBookName());
+        assertEquals("Gone with the wind", currentCustomer.getBorrowedBooksList().getFirst().getName());
 
         LMS.processBookOperations("buy Gone with the wind");
         assertEquals("Your operation is not available.\nPlease type in the operation you want to do: ", outStream.toString());
