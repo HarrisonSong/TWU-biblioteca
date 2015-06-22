@@ -45,4 +45,19 @@ public class MainMenuTest {
         menu.showMainMenu();
         assertEquals("Main Menu\nList Books\nList Movies\n", outStream.toString());
     }
+
+    @Test
+    public void testBuyBooksOperationCannotBeDetected(){
+        assertEquals("", menu.checkOperation("buy book"));
+    }
+
+    @Test
+    public void testListBooksOperationIsDetected(){
+        assertEquals(MAIN_MENU_LIST_BOOKS_OPTION, menu.checkOperation("List books"));
+    }
+
+    @Test
+    public void testListMoviesOperationIsDetected(){
+        assertEquals(MAIN_MENU_LIST_MOVIES_OPTION, menu.checkOperation("list movies"));
+    }
 }
