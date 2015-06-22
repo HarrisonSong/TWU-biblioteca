@@ -34,6 +34,6 @@ public class MainMenu {
                 return option;
             }
         }
-        return null;
+        return "";
     }
 }
