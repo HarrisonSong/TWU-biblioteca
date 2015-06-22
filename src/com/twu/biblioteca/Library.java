@@ -60,10 +60,10 @@ public class Library {
 
     public SystemMessageType processBooksOperations(String operation, Customer customer){
         SystemMessageType resultMessageType = SystemMessageType.INVALID_BOOK_OPTION;
-        BookOperation bookOperation = LibraryOperationParser.parseOperation(operation);
-        switch (bookOperation.getOperation()){
+        LibraryItemOperation libraryItemOperation = LibraryOperationParser.parseOperation(operation);
+        switch (libraryItemOperation.getOperation()){
             case LIBRARY_OPTION_BORROW:{
-                LibraryItem targetItem = this.findBookIfAvailable(bookOperation.getTarget());
+                LibraryItem targetItem = this.findBookIfAvailable(libraryItemOperation.getTarget());
                 if(targetItem != null){
                     customer.borrowBook((Book)targetItem);
                     resultMessageType = SystemMessageType.SUCCESSFUL_CHECKOUT;
@@ -73,7 +73,7 @@ public class Library {
                 break;
             }
             case LIBRARY_OPTION_RETURN:{
-                LibraryItem targetItem = customer.findBookIfAvailableToReturn(bookOperation.getTarget());
+                LibraryItem targetItem = customer.findBookIfAvailableToReturn(libraryItemOperation.getTarget());
                 if(targetItem != null) {
                     customer.returnBook((Book)targetItem);
                     resultMessageType = SystemMessageType.SUCCESSFUL_RETURN;

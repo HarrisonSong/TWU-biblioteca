@@ -8,14 +8,14 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by qiyuesong on 21/6/15.
  */
-public class BookOperationTest {
-    private BookOperation operationA, operationB, operationC;
+public class LibraryItemOperationTest {
+    private LibraryItemOperation operationA, operationB, operationC;
 
     @Before
     public void setup(){
-        operationA = new BookOperation(LibraryOptionType.LIBRARY_OPTION_BORROW, "Galaxy War");
-        operationB = new BookOperation(LibraryOptionType.LIBRARY_OPTION_RETURN, "Javascript Advanced");
-        operationC = new BookOperation(LibraryOptionType.LIBRARY_OPTION_UNKNOWN, "Master Angular.js");
+        operationA = new LibraryItemOperation(LibraryOptionType.LIBRARY_OPTION_BORROW, "Galaxy War");
+        operationB = new LibraryItemOperation(LibraryOptionType.LIBRARY_OPTION_RETURN, "Javascript Advanced");
+        operationC = new LibraryItemOperation(LibraryOptionType.LIBRARY_OPTION_UNKNOWN, "Master Angular.js");
     }
 
     @Test
