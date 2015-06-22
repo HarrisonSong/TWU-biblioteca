@@ -60,24 +60,32 @@ public class Library {
 
     public SystemMessageType processBooksOperations(String operation, Customer customer){
         SystemMessageType resultMessageType = SystemMessageType.INVALID_BOOK_OPTION;
-        if(operation.startsWith("borrow ")){
-            String bookName = operation.replace("borrow ", "");
-            Book targetBook = this.findBookIfAvailable(bookName);
-            if(targetBook != null){
-                customer.borrowBook(targetBook);
-                resultMessageType = SystemMessageType.SUCCESSFUL_CHECKOUT;
-            }else {
-                resultMessageType = SystemMessageType.UNSUCCESSFUL_CHECKOUT;
+        BookOperation bookOperation = LibraryOperationParser.parseOperation(operation);
+        switch (bookOperation.getOperation()){
+            case LIBRARY_OPTION_BORROW:{
+                Book targetBook = this.findBookIfAvailable(bookOperation.getTarget());
+                if(targetBook != null){
+                    customer.borrowBook(targetBook);
+                    resultMessageType = SystemMessageType.SUCCESSFUL_CHECKOUT;
+                }else {
+                    resultMessageType = SystemMessageType.UNSUCCESSFUL_CHECKOUT;
+                }
+                break;
             }
-        }else if(operation.startsWith("return ")){
-            String bookName = operation.replace("return ", "");
-            Book targetBook = customer.findBookIfAvailableToReturn(bookName);
-            if(targetBook != null) {
-                customer.returnBook(targetBook);
-                resultMessageType = SystemMessageType.SUCCESSFUL_RETURN;
-            }else {
-                resultMessageType = SystemMessageType.UNSUCCESSFUL_RETURN;
+            case LIBRARY_OPTION_RETURN:{
+                Book targetBook = customer.findBookIfAvailableToReturn(bookOperation.getTarget());
+                if(targetBook != null) {
+                    customer.returnBook(targetBook);
+                    resultMessageType = SystemMessageType.SUCCESSFUL_RETURN;
+                }else {
+                    resultMessageType = SystemMessageType.UNSUCCESSFUL_RETURN;
+                }
+                break;
             }
+            case LIBRARY_OPTION_UNKNOWN:
+                break;
+            default:
+                break;
         }
         return resultMessageType;
     }
