@@ -1,6 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
+import com.twu.biblioteca.LibraryItem;
+import com.twu.biblioteca.SystemMessageType;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -230,7 +233,7 @@ public class LibraryTest {
 
     @Test
     public void testBuyBookA(){
-        assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("buy One Hundred Years of Solitude", customer));
+        Assert.assertEquals(SystemMessageType.INVALID_LIBRARY_ITEM_OPTION, library.processLibraryItemsOperations("buy One Hundred Years of Solitude", customer));
         assertFalse(bookA.getCheckOutStatus());
     }
 

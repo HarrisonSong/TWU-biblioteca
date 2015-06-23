@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.BookTest;
+import com.twu.biblioteca.model.CustomerTest;
+import com.twu.biblioteca.model.LibraryTest;
+import com.twu.biblioteca.model.MovieTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

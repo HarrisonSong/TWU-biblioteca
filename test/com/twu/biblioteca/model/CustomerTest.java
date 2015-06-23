@@ -1,11 +1,11 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.twu.biblioteca.PredefinedBooksDetails.*;
-import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedUserDetails.*;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 16/6/15.

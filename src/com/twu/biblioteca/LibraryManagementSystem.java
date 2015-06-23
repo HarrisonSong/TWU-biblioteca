@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Customer;
+import com.twu.biblioteca.model.Library;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 

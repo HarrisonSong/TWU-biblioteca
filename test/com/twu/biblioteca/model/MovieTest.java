@@ -1,10 +1,10 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static com.twu.biblioteca.PredefinedMovieDetails.*;
+import static org.junit.Assert.*;
 
 /**
  * Created by qiyuesong on 21/6/15.

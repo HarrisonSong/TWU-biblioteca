@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
+
 import java.util.LinkedList;
 
 import static com.twu.biblioteca.PredefinedBooksDetails.*;

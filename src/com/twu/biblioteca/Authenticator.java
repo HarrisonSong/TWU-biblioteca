@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Customer;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

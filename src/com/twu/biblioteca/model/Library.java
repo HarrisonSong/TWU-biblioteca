@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
+
+import com.twu.biblioteca.*;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -19,10 +21,8 @@ public class Library {
 
     public LinkedList<LibraryItem> getAvailableItemsList(){
         LinkedList<LibraryItem> availableItemsList = new LinkedList<LibraryItem>();
-        Iterator<LibraryItem> iterator = this.itemsList.iterator();
-        while(iterator.hasNext()){
-            LibraryItem currentItem = iterator.next();
-            if(!currentItem.getCheckOutStatus()){
+        for (LibraryItem currentItem : this.itemsList) {
+            if (!currentItem.getCheckOutStatus()) {
                 availableItemsList.addLast(currentItem);
             }
         }
@@ -31,10 +31,8 @@ public class Library {
 
     public LinkedList<LibraryItem> getAllBooksList(){
         LinkedList<LibraryItem> booksList = new LinkedList<LibraryItem>();
-        Iterator<LibraryItem> iterator = this.itemsList.iterator();
-        while(iterator.hasNext()){
-            LibraryItem currentItem = iterator.next();
-            if(currentItem instanceof Book){
+        for (LibraryItem currentItem : this.itemsList) {
+            if (currentItem instanceof Book) {
                 booksList.addLast(currentItem);
             }
         }
@@ -43,10 +41,8 @@ public class Library {
 
     public LinkedList<LibraryItem> getAvailableBooksList(){
         LinkedList<LibraryItem> availableBooksList = new LinkedList<LibraryItem>();
-        Iterator<LibraryItem> iterator = this.itemsList.iterator();
-        while(iterator.hasNext()){
-            LibraryItem currentItem = iterator.next();
-            if(!currentItem.getCheckOutStatus() && currentItem instanceof Book){
+        for (LibraryItem currentItem : this.itemsList) {
+            if (!currentItem.getCheckOutStatus() && currentItem instanceof Book) {
                 availableBooksList.addLast(currentItem);
             }
         }
